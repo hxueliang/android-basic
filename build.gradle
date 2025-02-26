@@ -1,3 +1,8 @@
+/**
+ * 编译配置文件 build.gradle
+ * 项目级别
+ * 指定了当前项目的总体编译规则
+ */
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
 alias(libs.plugins.android.application) apply false
