@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    清单文件
+    每个应用的根目录都必须包含一个 AndroidManifest.xml，并且文件名必须一模一样。
+    这个文件中包含了APP的配置信息，系统需要根据里面的内容运行APP的代码，显示界面。
+-->
+
+<!--
+    manifest 是 AndroidManifest.xml 的根节点，它的 package 属性指定了该 App 的包名（此版本没有看到）。
+-->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!--
+        manifest 下面有个 application 节点，它的各属性说明如下：
+        1. android:allowBackup，是否允许应用备份。允许用户备份系统应用和第三方应用的 apk 安装包和应用数据，
+        以便在刷机或者数据丢失后恢复应用，用户即可通过 adb backup 和 abd restore 来进行对应数据的备份和恢复。
+        为 true 表示允许，为 false 则表示不允许。
+        2. android:icon，指定 App 在手机屏幕上显示的图标。
+        3. android:label，指定 App 在手机屏幕上显示的名称。
+        4. android:roundIcon，指定 App 的圆角图标。
+        5. android:supportsRtl，是否支持阿拉伯语/波斯语，这种从右往左的文字排列顺序。true 支持，false 不支持。
+        6. android:theme，指定 App 的显示风格。
+    -->
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,14 +32,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBasic"
         tools:targetApi="31">
+        <!--
+            application 下面还有个 activity 节点，
+            什么是 Activity?
+            Activity 是一个应用组件，提供一个屏，用户可以用来交互为了完成某项任务。
+
+            它是活动页的注册声明，只有在 AndroidManifest.xml 中正确配置了 activity 节点，
+            才能在运行时访问对应的活动页面。初始配置的 MainActivity 正是 App 的默认主页，
+            之所以说该页面是 App 主页，是因为它的 activity 节点内部还配置了以下的过滤信息：
+        -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.AndroidBasic">
             <intent-filter>
+                <!--
+                    其中 action 节点设置的 android.intent.action.MAIN
+                    表示该页面是 App 的入口页面，启动 App 时会最先打开该页面。
+                -->
                 <action android:name="android.intent.action.MAIN" />
-
+                <!--
+                    而 category 节点设置的 android.intent.category.LAUNCHER
+                    决定了是否在手机屏幕上显示 App 图标，
+                    如果同时有两个 activity 节点内部都设置了 android.intent.category.LAUNCHER，
+                    那么桌面就会显示两个 App 图标。
+                    以上的两种节点规则不太好理，只需记住默认主页必须同时配置这两种过滤规则即可。
+                -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
