@@ -18,6 +18,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        /*
         setContent {
             AndroidBasicTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -28,6 +29,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+        */
+        setContentView(R.layout.activity_main)
         Log.d("x-log", "onCreate");
     }
 }
