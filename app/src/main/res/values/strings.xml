@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">AndroidBasic</string>
     <string name="ni_hao">你好</string>
+    <string name="go_to_activity2">跳转activity2</string>
 </resources>
