@@ -43,9 +43,7 @@
         -->
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.AndroidBasic">
+            android:exported="true">
             <intent-filter>
                 <!--
                     其中 action 节点设置的 android.intent.action.MAIN
