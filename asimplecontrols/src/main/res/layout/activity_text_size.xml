@@ -5,4 +5,36 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <!-- 通过 xml属性 设置字体大小为 24px -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/xml_set_24px"
+        android:textSize="24px"/>
+
+    <!-- 通过 xml属性 设置字体大小为 24dp -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/xml_set_24dp"
+        android:textSize="24dp"/>
+
+    <!--
+        通过 xml属性 设置字体大小为 24sp，
+        修改系统的字体大小，app的字体大小也体变化大小
+        官方推荐使用sp
+    -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/xml_set_24sp"
+        android:textSize="24sp"/>
+
+    <!-- 通过 java 设置字体大小为 24sp -->
+    <TextView
+        android:id="@+id/tv_java_set_24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/java_set_24sp"/>
+
 </LinearLayout>
