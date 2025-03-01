@@ -10,8 +10,8 @@
         layout_gravity：指定当前视图相对于上级视图的对齐方式
         gravity：指定其下级视图的对齐方式
 
-        取值：left、top、right、bottom，还可以用竖线连接各值
-        例如：left|top
+        取值：start、top、end、bottom，还可以用竖线连接各值
+        例如：start|top
     -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,6 +21,8 @@
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="200dp"
+            android:layout_gravity="bottom"
+            android:gravity="end|bottom"
             android:background="#ff00ff">
 
             <TextView
