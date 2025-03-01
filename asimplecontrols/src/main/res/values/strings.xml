@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">aSimpleControls</string>
+    <string name="learn_text_view_controls">学习TextView控件</string>
+    <string name="ni_hao_text_view_controls">你好TextView控件</string>
 </resources>
