@@ -4,4 +4,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center">
+
+    <!-- java设置字体颜色-->
+    <TextView
+        android:id="@+id/tv_text_color"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/java_set_text_color"/>
+
+    <!-- xml属性设置字体颜色-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/xml_set_text_color"
+        android:textColor="#ff0000ff"/>
+
+    <!-- 资源文件设置字体颜色-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/res_set_text_color"
+        android:textColor="@color/green"/>
 </LinearLayout>

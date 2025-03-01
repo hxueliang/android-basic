@@ -6,4 +6,7 @@
     <string name="xml_set_24dp">24dp 属性设置</string>
     <string name="xml_set_24sp">24sp 属性设置</string>
     <string name="java_set_24sp">24sp java设置</string>
+    <string name="java_set_text_color">java设置红色</string>
+    <string name="xml_set_text_color">xml属性设置颜色</string>
+    <string name="res_set_text_color">资源文件设置字体颜色</string>
 </resources>
