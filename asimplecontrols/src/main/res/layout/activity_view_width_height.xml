@@ -4,4 +4,37 @@
     android:layout_height="match_parent"
     android:paddingTop="50dp"
     android:orientation="vertical">
+
+    <!-- wrap_content -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="使用wrap_content"
+        android:background="#00ffff"
+        android:textSize="24sp"/>
+
+    <!-- match_parent -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用match_parent"
+        android:background="#ff00ff"
+        android:textSize="24sp"/>
+
+    <!-- 300dp -->
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="使用300dp"
+        android:background="#ffff00"
+        android:textSize="24sp"/>
+
+    <!-- java -->
+    <TextView
+        android:id="@+id/tv_width"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="使用java设置300dp"
+        android:background="#ff9933"
+        android:textSize="24sp"/>
 </LinearLayout>
