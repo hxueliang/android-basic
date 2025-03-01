@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="50dp"
+    android:orientation="vertical">
+    <!--
+        设置视图的对齐方式
+
+        layout_gravity：指定当前视图相对于上级视图的对齐方式
+        gravity：指定其下级视图的对齐方式
+
+        取值：left、top、right、bottom，还可以用竖线连接各值
+        例如：left|top
+    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#00ffff">
+
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="200dp"
+            android:background="#ff00ff">
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#ff9933"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
