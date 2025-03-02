@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hxl.asimplecontrols.util.DateUtil;
 
-public class ButtonClickListenerPublicActivity extends AppCompatActivity {
+public class ButtonClickListenerPublicActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tv_msg;
 
@@ -22,23 +22,15 @@ public class ButtonClickListenerPublicActivity extends AppCompatActivity {
         tv_msg = findViewById(R.id.tv_msg);
 
         btn.setOnClickListener(
-                // 创建MyOnClickListener实例，传入tv_msg，被MyOnClickListener方法接收
-                new ButtonClickListenerActivity.MyOnClickListener(tv_msg)
+                // 传入当前类
+                this
         );
     }
 
-    static class MyOnClickListener implements View.OnClickListener {
-
-        private final TextView tv_msg;
-
-        public MyOnClickListener(TextView tvMsg) {
-            this.tv_msg = tvMsg;
-        }
-
-        @Override
-        public void onClick(View v) {
-            String str = String.format("时间：%s，控件：%s", DateUtil.getNowTime(), ((Button) v).getText());
-            this.tv_msg.setText(str);
-        }
+    // 实现 View.OnClickListener 接口
+    @Override
+    public void onClick(View v) {
+        String str = String.format("时间：%s，控件：%s", DateUtil.getNowTime(), ((Button) v).getText());
+        tv_msg.setText(str);
     }
 }
