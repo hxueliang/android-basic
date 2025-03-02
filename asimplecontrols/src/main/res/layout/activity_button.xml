@@ -5,6 +5,12 @@
     android:orientation="vertical"
     android:paddingTop="50dp">
 
+    <!--
+        使用 onClick 的问题
+        xml 作为一个布局文件，使用 onClick="handleClick1" 时，
+        与 java 代码的 handleClick1 硬绑定了
+        xml 和 java 代码没有解耦
+    -->
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

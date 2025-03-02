@@ -5,6 +5,12 @@
     android:orientation="vertical"
     android:paddingTop="50dp">
 
+    <!--
+        使用 OnClickListener 比使用 onClick 麻烦，
+        为什么还推荐使用 OnClickListener？
+        因为 OnClickListener 实现了，xml 与 java 的解耦，
+        所以推荐使用 OnClickListener
+    -->
     <Button
         android:id="@+id/btn"
         android:layout_width="wrap_content"
