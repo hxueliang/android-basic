@@ -12,6 +12,13 @@
         android:text="让当前类实现OnClickListener接口"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="测试复用当前类接口"
+        android:textSize="24sp" />
+
     <TextView
         android:id="@+id/tv_msg"
         android:layout_width="wrap_content"
