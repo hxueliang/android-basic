@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <!-- 0 -->
+            <!-- 0.不设置：默认fitCenter -->
             <ImageView
                 android:id="@+id/iv_girl"
                 android:layout_width="match_parent"
@@ -20,65 +20,81 @@
                 android:layout_marginBottom="5dp"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 1 -->
+            <!-- 1.fitXY：拉伸图片使其正好填满视图 -->
             <ImageView
                 android:id="@+id/iv_girl_1"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 2 -->
+            <!-- 2.matrix：图片的缩放和位置完全由 Matrix 对象控制，这意味着图片将不会根据 ImageView 的尺寸自动缩放或调整位置，而是完全按照 Matrix 中定义的变换矩阵进行变换。 -->
             <ImageView
                 android:id="@+id/iv_girl_2"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
+                android:scaleType="matrix"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 3 -->
+            <!-- 3.fitStart：保持宽高比例，拉伸图片使其位于视图上方或左侧 -->
             <ImageView
                 android:id="@+id/iv_girl_3"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
+                android:scaleType="fitStart"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 4 -->
+            <!-- 4.fitCenter：保持宽高比例，拉伸图片使其位于视图中间（缩小或放大） -->
             <ImageView
                 android:id="@+id/iv_girl_4"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 5 -->
+            <!-- 5.fitEnd：保持宽高比例，拉伸图片使其位于视图下方或右侧 -->
             <ImageView
                 android:id="@+id/iv_girl_5"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
+                android:scaleType="fitEnd"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 6 -->
+            <!-- 6.centerInside：保持宽高比例，缩小图片使之位于视图中间（只允许缩小） -->
             <ImageView
                 android:id="@+id/iv_girl_6"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 7 -->
+            <!-- 7.center：保持图片原尺寸，并使其位于视图中间（不缩小，不放大） -->
             <ImageView
                 android:id="@+id/iv_girl_7"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
+                android:scaleType="center"
                 android:src="@drawable/ic_girl" />
 
-            <!-- 8 -->
+            <!-- 8.centerCrop：拉伸图片使其充满视图，并位于视图中间 -->
             <ImageView
                 android:id="@+id/iv_girl_8"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_girl" />
+
+            <!-- 9.java代码设置 -->
+            <ImageView
+                android:id="@+id/iv_girl_9"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginBottom="5dp"
