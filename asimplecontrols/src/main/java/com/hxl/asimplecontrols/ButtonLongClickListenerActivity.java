@@ -27,5 +27,11 @@ public class ButtonLongClickListenerActivity extends AppCompatActivity {
                 return false; // 自身不消耗事件，让事件继续冒泡
             }
         });
+
+        // 匿名类语法糖 lambda表达式
+        btn.setOnLongClickListener(v -> {
+            tv_msg.setText("触发了长按事件");
+            return false; // 自身不消耗事件，让事件继续冒泡
+        });
     }
 }
