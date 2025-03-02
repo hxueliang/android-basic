@@ -18,6 +18,9 @@ public class ButtonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_button);
 
+        // 变量提取快捷键
+        // mac: option + command + f
+        // win: ctrl + alt + f
         tv_message = findViewById(R.id.tv_message);
     }
 
