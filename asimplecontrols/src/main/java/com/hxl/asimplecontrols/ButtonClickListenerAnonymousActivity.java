@@ -19,10 +19,18 @@ public class ButtonClickListenerAnonymousActivity extends AppCompatActivity impl
         setContentView(R.layout.activity_button_click_listener_anonymous);
         Button btn = findViewById(R.id.btn);
         Button btn2 = findViewById(R.id.btn2);
+        Button btn3 = findViewById(R.id.btn3);
         tv_msg = findViewById(R.id.tv_msg);
 
         btn.setOnClickListener(this);
         btn2.setOnClickListener(this);
+        btn3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                tv_msg.setText("使用匿名类实现接口");
+            }
+        });
     }
 
     // 实现 View.OnClickListener 接口
