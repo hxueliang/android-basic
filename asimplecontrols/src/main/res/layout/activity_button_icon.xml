@@ -8,24 +8,32 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_launcher_foreground"
+        android:drawablePadding="10dp"
         android:text="图标在左"
         android:textSize="20sp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_launcher_foreground"
+        android:drawablePadding="10dp"
         android:text="图标在右"
         android:textSize="20sp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_launcher_foreground"
+        android:drawablePadding="5dp"
         android:text="图标在上"
         android:textSize="20sp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableBottom="@drawable/ic_launcher_foreground"
+        android:drawablePadding="5dp"
         android:text="图标在下"
         android:textSize="20sp" />
 </LinearLayout>
