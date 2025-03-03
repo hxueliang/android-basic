@@ -8,6 +8,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#0000ff"
         android:drawableLeft="@drawable/ic_launcher_foreground"
         android:drawablePadding="10dp"
         android:text="图标在左"
