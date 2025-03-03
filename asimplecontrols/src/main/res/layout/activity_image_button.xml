@@ -5,4 +5,9 @@
     android:orientation="vertical"
     android:paddingTop="50dp">
 
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_girl" />
 </LinearLayout>
