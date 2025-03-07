@@ -18,5 +18,8 @@ public class AFinishActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        if (v.getId() == R.id.ibtn_back || v.getId() == R.id.btn_finish) {
+            finish();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.hxl.bactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,5 +18,6 @@ public class AStartActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        startActivity(new Intent(this, AFinishActivity.class));
     }
 }
