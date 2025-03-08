@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_show_string"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示String资源文件的内容" />
+
+    <Button
+        android:id="@+id/btn_get_string"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取String的内容，显示在上面的tv中" />
+</LinearLayout>
