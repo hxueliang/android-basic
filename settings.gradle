@@ -23,3 +23,4 @@ rootProject.name = "AndroidBasic"
 include ':app'
 include ':asimplecontrols'
 include ':bactivity'
+include ':cintermediatecontrols'
