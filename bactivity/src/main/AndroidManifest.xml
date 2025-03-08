@@ -18,7 +18,7 @@
             android:name=".AFinishActivity"
             android:exported="false" />
         <activity
-            android:name=".CLoginActivity"
+            android:name=".DIntentActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
