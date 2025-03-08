@@ -16,13 +16,13 @@
             android:exported="false" />
         <activity
             android:name=".CLoginSuccessActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".BSecondActivity"
             android:exported="false" />
         <activity
             android:name=".AFinishActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".JShortcutsActivity"
             android:exported="true">
@@ -39,6 +39,10 @@
             <meta-data
                 android:name="myName"
                 android:value="HuangXL" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
     </application>
 
