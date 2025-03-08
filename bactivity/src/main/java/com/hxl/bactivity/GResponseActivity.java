@@ -1,5 +1,6 @@
 package com.hxl.bactivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -40,6 +41,9 @@ public class GResponseActivity extends AppCompatActivity implements View.OnClick
         bundle.putString("time", DateUtil.getNowTime());
         bundle.putString("content", tv_red.getText().toString());
         intent.putExtras(bundle);
+
+        // 携带意图返回上一个页面，RESULT_OK表示处理成功
+        setResult(Activity.RESULT_OK, intent);
 
         finish();
     }
