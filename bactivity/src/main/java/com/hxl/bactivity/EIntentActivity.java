@@ -55,6 +55,7 @@ public class EIntentActivity extends AppCompatActivity implements View.OnClickLi
             // 并且当前手机以安装的app中，匹配其清单文件中activity中的exported为true：表示请允许其它应用打开
             /**
              * <activity android:exported="true" >
+             */
 
         }
         startActivity(intent);
