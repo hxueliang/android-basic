@@ -16,8 +16,7 @@
             android:exported="false" />
         <activity
             android:name=".BFirstActivity"
-            android:exported="true"
-            android:launchMode="standard">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
