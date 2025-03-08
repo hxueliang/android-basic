@@ -21,5 +21,7 @@ public class HReadStringActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
+        String value = getString(R.string.my_name);
+        tv_show_string.setText(value);
     }
 }
