@@ -31,6 +31,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!--
+                元数据：可以用来存放第三方SDK注册的token等信息
+                如：高德地图、友盟、微信登录
+            -->
+            <meta-data
+                android:name="myName"
+                android:value="HuangXL" />
         </activity>
     </application>
 
