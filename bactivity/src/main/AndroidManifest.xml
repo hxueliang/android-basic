@@ -24,7 +24,7 @@
             android:name=".AFinishActivity"
             android:exported="false" />
         <activity
-            android:name=".HReadStringActivity"
+            android:name=".IMetaDataActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
