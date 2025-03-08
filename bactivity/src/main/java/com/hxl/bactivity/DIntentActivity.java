@@ -1,5 +1,7 @@
 package com.hxl.bactivity;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,6 +19,18 @@ public class DIntentActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        
+        // 1、在Intent的构造函数中指定
+        // Intent intent = new Intent(this, AFinishActivity.class);
+
+        // 2、调用意图对象的setClass方法指定
+        // Intent intent = new Intent();
+        // intent.setClass(this, AFinishActivity.class);
+
+        // 3、调用意图对象的setComponent方法指定
+        Intent intent = new Intent();
+        ComponentName comp = new ComponentName(this, AFinishActivity.class);
+        intent.setComponent(comp);
+
+        startActivity(intent);
     }
 }
