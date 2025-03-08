@@ -9,13 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBasic">
         <activity
+            android:name=".CLoginSuccessActivity"
+            android:exported="false" />
+        <activity
             android:name=".BSecondActivity"
             android:exported="false" />
         <activity
             android:name=".AFinishActivity"
             android:exported="false" />
         <activity
-            android:name=".BFirstActivity"
+            android:name=".CLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
