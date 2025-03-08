@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hxl.bactivity.util.util.DateUtil;
+
 public class FSendActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tv_message;
@@ -24,6 +26,11 @@ public class FSendActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         Intent intent = new Intent(this, FReceiveActivity.class);
 
+        // 创建一个包裹对象
+        Bundle bundle = new Bundle();
+        bundle.putString("time", DateUtil.getNowTime());
+        bundle.putString("content", tv_message.getText().toString());
+        intent.putExtras(bundle);
 
         startActivity(intent);
     }
