@@ -16,5 +16,6 @@
         android:id="@+id/ck_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:button="@drawable/ck_selecotr"
         android:text="自定义复选框样式" />
 </LinearLayout>
