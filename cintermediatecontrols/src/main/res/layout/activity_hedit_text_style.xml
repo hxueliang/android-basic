@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:background="@null"
         android:hint="去掉边框"
         android:inputType="text" />
 
@@ -24,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/et_selector"
         android:hint="自定义样式"
         android:inputType="text" />
 </LinearLayout>
