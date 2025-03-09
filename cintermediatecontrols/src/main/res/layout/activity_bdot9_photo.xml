@@ -13,6 +13,20 @@
         android:background="@drawable/btn_bg_org"
         android:text="使用普通png图做背景" />
 
+    <!--
+        如何创建.9图片：
+        在普通图片上右键，
+        在弹出的菜单栏中，
+        选择Create 9-Patch file...
+    -->
+    <!--
+        如何设置.9图片：
+        拖动zoom滑块：放大缩小示图
+        光标移到图片上：出现上下左右4条线（灰线）
+        通过拖动4条灰线：可控制另外4条线的长短（黑线）
+        上左黑线：控制被拉申的区域
+        下右黑线：控制内容区的padding（通过不在.9图设置padding，而在留在代码里设置）
+    -->
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
