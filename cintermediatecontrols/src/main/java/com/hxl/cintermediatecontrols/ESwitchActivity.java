@@ -1,6 +1,7 @@
 package com.hxl.cintermediatecontrols;
 
 import android.os.Bundle;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -17,9 +18,11 @@ public class ESwitchActivity extends AppCompatActivity implements CompoundButton
         setContentView(R.layout.activity_eswitch);
 
         Switch sw_status = findViewById(R.id.sw_status);
+        CheckBox ck_status = findViewById(R.id.ck_status);
         tv_message = findViewById(R.id.tv_message);
 
         sw_status.setOnCheckedChangeListener(this);
+        ck_status.setOnCheckedChangeListener(this);
     }
 
     @Override
