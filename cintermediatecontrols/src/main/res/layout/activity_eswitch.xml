@@ -39,8 +39,10 @@
 
         <CheckBox
             android:id="@+id/ck_status"
-            android:layout_width="80dp"
-            android:layout_height="30dp" />
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/sw_selector"
+            android:button="@null" />
 
     </LinearLayout>
 
