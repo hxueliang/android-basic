@@ -4,6 +4,13 @@
     android:layout_marginTop="50dp"
     android:orientation="vertical">
 
+    <DatePicker
+        android:id="@+id/dp_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
     <Button
         android:id="@+id/btn_confirm"
         android:layout_width="match_parent"
