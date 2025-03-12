@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBasic">
         <activity
-            android:name=".CDatabaseActivity"
+            android:name=".DSQLiteHelperActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
