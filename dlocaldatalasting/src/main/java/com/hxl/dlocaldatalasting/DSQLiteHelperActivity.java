@@ -7,12 +7,18 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hxl.dlocaldatalasting.database.UserDBHelper;
+import com.hxl.dlocaldatalasting.enity.User;
+import com.hxl.dlocaldatalasting.util.ToastUtil;
+
 public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText et_name;
     private EditText et_age;
     private EditText et_height;
     private CheckBox ck_married;
+    private UserDBHelper mHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +37,42 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        // 获得数据库存帮助的实例
+        mHelper = UserDBHelper.getInstance(this);
+        // 打开数据库的读写链接
+        mHelper.openWriteLink();
+        mHelper.openReadLink();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // 关闭数据库链接
+        mHelper.closeLink();
+    }
+
+    @Override
     public void onClick(View v) {
         String name = et_name.getText().toString();
         String age = et_age.getText().toString();
         String height = et_height.getText().toString();
         Boolean married = ck_married.isChecked();
+        User user = null;
 
+        if (v.getId() == R.id.btn_add) {
+            user = new User(
+                    name,
+                    Integer.parseInt(age),
+                    Long.parseLong(height),
+                    married
+            );
+            long result = mHelper.insert(user);
+            if (result > 0) {
+                // 在 App Inspection 里可以看到添加的数据
+                ToastUtil.show(this, "添加成功");
+            }
+        }
     }
 }
