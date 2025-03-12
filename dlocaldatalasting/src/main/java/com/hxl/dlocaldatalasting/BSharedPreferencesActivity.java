@@ -30,6 +30,27 @@ public class BSharedPreferencesActivity extends AppCompatActivity implements Vie
         findViewById(R.id.btn_save).setOnClickListener(this);
 
         preferences = getSharedPreferences("user_config", Context.MODE_PRIVATE);
+
+        reload();
+    }
+
+    private void reload() {
+        // Todo: 应该有权限问题，无法读取数据，启动应用闪退
+        String name = preferences.getString("name", "");
+        int age = preferences.getInt("age", 0);
+        float height = preferences.getFloat("height", 0f);
+        boolean married = preferences.getBoolean("married", false);
+
+        if (name != "") {
+            et_name.setText(name);
+        }
+        if (age != 0) {
+            et_age.setText(String.valueOf(age));
+        }
+        if (height != 0f) {
+            et_height.setText(String.valueOf(height));
+        }
+        ck_married.setChecked(married);
     }
 
     @Override
