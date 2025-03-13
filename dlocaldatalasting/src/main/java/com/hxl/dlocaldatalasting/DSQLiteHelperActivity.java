@@ -60,6 +60,7 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
         String height = et_height.getText().toString();
         Boolean married = ck_married.isChecked();
         User user = null;
+        long result = -1;
 
         if (v.getId() == R.id.btn_add) {
             user = new User(
@@ -68,10 +69,17 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
                     Long.parseLong(height),
                     married
             );
-            long result = mHelper.insert(user);
+            result = mHelper.insert(user);
             if (result > 0) {
                 // 在 App Inspection 里可以看到添加的数据
                 ToastUtil.show(this, "添加成功");
+            }
+        } else if (v.getId() == R.id.btn_delete) {
+            result = mHelper.deleteByName(name);
+            if (result >= 0) {
+                // 在 App Inspection 里可以看到删除的数据
+                String desc = "删除了" + result + "条数据";
+                ToastUtil.show(this, desc);
             }
         }
     }

@@ -87,4 +87,15 @@ public class UserDBHelper extends SQLiteOpenHelper {
         // 如果第三个参数 values 不为 Null 并且元素的个数大于0，可以把第二个参数设置为 null。
         return mWDB.insert(TABLE_NAME, null, values);
     }
+
+    public long deleteByName(String name) {
+        // 删除所有
+        // return mWDB.delete(TABLE_NAME, "1=1", null);
+
+        // 删除多个指定条件
+        // return mWDB.delete(TABLE_NAME, "name=? AND age=?", new String[]{name, age});
+
+        // 删除一个指定条件
+        return mWDB.delete(TABLE_NAME, "name=?", new String[]{name});
+    }
 }
