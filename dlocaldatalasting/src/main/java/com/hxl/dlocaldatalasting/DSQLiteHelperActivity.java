@@ -59,16 +59,15 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
         String age = et_age.getText().toString();
         String height = et_height.getText().toString();
         Boolean married = ck_married.isChecked();
-        User user = null;
+        User user = new User(
+                name,
+                Integer.parseInt(age),
+                Long.parseLong(height),
+                married
+        );
         long result = -1;
 
         if (v.getId() == R.id.btn_add) {
-            user = new User(
-                    name,
-                    Integer.parseInt(age),
-                    Long.parseLong(height),
-                    married
-            );
             result = mHelper.insert(user);
             if (result > 0) {
                 // 在 App Inspection 里可以看到添加的数据
@@ -79,6 +78,12 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
             if (result >= 0) {
                 // 在 App Inspection 里可以看到删除的数据
                 String desc = "删除了" + result + "条数据";
+                ToastUtil.show(this, desc);
+            }
+        } else if (v.getId() == R.id.btn_update) {
+            result = mHelper.update(user);
+            if (result >= 0) {
+                String desc = "更新了" + result + "条数据";
                 ToastUtil.show(this, desc);
             }
         }

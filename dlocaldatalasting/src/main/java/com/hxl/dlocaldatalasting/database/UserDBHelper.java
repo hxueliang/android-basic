@@ -98,4 +98,18 @@ public class UserDBHelper extends SQLiteOpenHelper {
         // 删除一个指定条件
         return mWDB.delete(TABLE_NAME, "name=?", new String[]{name});
     }
+
+    public long update(User user) {
+        ContentValues values = new ContentValues();
+        values.put("name", user.name);
+        values.put("age", user.age);
+        values.put("height", user.height);
+        values.put("married", user.married);
+
+        // 更新同时满足多个指定条件的
+        // return mWDB.update(TABLE_NAME, values, "name=? AND age=?", new String[]{user.name, String.valueOf(user.age)});
+
+        // 更新满足一个指定条件的
+        return mWDB.update(TABLE_NAME, values, "name=?", new String[]{user.name});
+    }
 }
