@@ -15,7 +15,7 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "user.db";
     private static final String TABLE_NAME = "user_info";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static UserDBHelper mHelper = null;
     private SQLiteDatabase mWDB = null;
     private SQLiteDatabase mRDB = null;
@@ -74,7 +74,12 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        // 修改版本号会执行此方法，为数据库增加两字段
+        String sql = null;
+        sql = "ALTER TABLE " + TABLE_NAME + " ADD COLUMN phone VARCHAR;";
+        db.execSQL(sql);
+        sql = "ALTER TABLE " + TABLE_NAME + " ADD COLUMN password VARCHAR;";
+        db.execSQL(sql);
     }
 
     public long insert(User user) {
