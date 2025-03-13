@@ -101,11 +101,15 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
         long flag = -1;
         try {
+            mWDB.beginTransaction();
             mWDB.insert(TABLE_NAME, null, values);
-            // int i = 10 / 0;
+            int i = 10 / 0; // 注释掉才能添加成功
             flag = mWDB.insert(TABLE_NAME, null, values);
+            mWDB.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            mWDB.endTransaction();
         }
         return flag;
     }

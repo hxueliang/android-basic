@@ -108,6 +108,17 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
                 Log.d("x_log", u.toString());
             }
         } else if (v.getId() == R.id.btn_transaction) {
+            User user = new User(
+                    name,
+                    Integer.parseInt(age),
+                    Long.parseLong(height),
+                    married
+            );
+            result = mHelper.insertTransaction(user);
+            if (result > 0) {
+                // 在 App Inspection 里可以看到添加的数据
+                ToastUtil.show(this, "添加成功");
+            }
         }
     }
 }
