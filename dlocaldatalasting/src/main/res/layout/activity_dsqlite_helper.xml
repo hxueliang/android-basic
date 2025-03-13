@@ -101,5 +101,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
-        android:text="查询" />
+        android:text="查询All" />
+
+    <Button
+        android:id="@+id/btn_query_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="查询ByName" />
 </LinearLayout>

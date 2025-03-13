@@ -135,4 +135,23 @@ public class UserDBHelper extends SQLiteOpenHelper {
 
         return list;
     }
+
+    public List<User> queryByName(String name) {
+        List<User> list = new ArrayList<>();
+
+        // 执行记录查询动作，该语句返回结果集的游标
+        Cursor cursor = mRDB.query(TABLE_NAME, null, "name=?", new String[]{name}, null, null, null);
+        // 循环取出游标指向的每条记录
+        while (cursor.moveToNext()) {
+            User user = new User();
+            user.id = cursor.getInt(0);
+            user.name = cursor.getString(1);
+            user.age = cursor.getInt(2);
+            user.height = cursor.getLong(3);
+            user.married = cursor.getInt(4) == 1;
+            list.add(user);
+        }
+
+        return list;
+    }
 }

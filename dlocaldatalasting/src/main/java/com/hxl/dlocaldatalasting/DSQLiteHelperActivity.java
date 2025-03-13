@@ -37,6 +37,7 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
         findViewById(R.id.btn_delete).setOnClickListener(this);
         findViewById(R.id.btn_update).setOnClickListener(this);
         findViewById(R.id.btn_query).setOnClickListener(this);
+        findViewById(R.id.btn_query_name).setOnClickListener(this);
     }
 
     @Override
@@ -97,6 +98,11 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
             }
         } else if (v.getId() == R.id.btn_query) {
             List<User> list = mHelper.queryAll();
+            for (User u : list) {
+                Log.d("x_log", u.toString());
+            }
+        } else if (v.getId() == R.id.btn_query_name) {
+            List<User> list = mHelper.queryByName(name);
             for (User u : list) {
                 Log.d("x_log", u.toString());
             }
