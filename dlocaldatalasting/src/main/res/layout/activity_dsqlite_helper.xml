@@ -109,4 +109,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
         android:text="查询ByName" />
+
+    <Button
+        android:id="@+id/btn_transaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="事务添加" />
 </LinearLayout>

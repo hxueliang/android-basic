@@ -92,6 +92,24 @@ public class UserDBHelper extends SQLiteOpenHelper {
         return mWDB.insert(TABLE_NAME, null, values);
     }
 
+    public long insertTransaction(User user) {
+        ContentValues values = new ContentValues();
+        values.put("name", user.name);
+        values.put("age", user.age);
+        values.put("height", user.height);
+        values.put("married", user.married);
+
+        long flag = -1;
+        try {
+            mWDB.insert(TABLE_NAME, null, values);
+            // int i = 10 / 0;
+            flag = mWDB.insert(TABLE_NAME, null, values);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
     public long deleteByName(String name) {
         // 删除所有
         // return mWDB.delete(TABLE_NAME, "1=1", null);
