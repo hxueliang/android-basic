@@ -9,7 +9,7 @@ public class User {
     public boolean married; // 婚否
 
     // 无参构造函数
-    User() {
+    public User() {
 
     }
 

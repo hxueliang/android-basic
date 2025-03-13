@@ -1,6 +1,7 @@
 package com.hxl.dlocaldatalasting;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -10,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hxl.dlocaldatalasting.database.UserDBHelper;
 import com.hxl.dlocaldatalasting.enity.User;
 import com.hxl.dlocaldatalasting.util.ToastUtil;
+
+import java.util.List;
 
 public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -59,15 +62,15 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
         String age = et_age.getText().toString();
         String height = et_height.getText().toString();
         Boolean married = ck_married.isChecked();
-        User user = new User(
-                name,
-                Integer.parseInt(age),
-                Long.parseLong(height),
-                married
-        );
         long result = -1;
 
         if (v.getId() == R.id.btn_add) {
+            User user = new User(
+                    name,
+                    Integer.parseInt(age),
+                    Long.parseLong(height),
+                    married
+            );
             result = mHelper.insert(user);
             if (result > 0) {
                 // 在 App Inspection 里可以看到添加的数据
@@ -81,10 +84,21 @@ public class DSQLiteHelperActivity extends AppCompatActivity implements View.OnC
                 ToastUtil.show(this, desc);
             }
         } else if (v.getId() == R.id.btn_update) {
+            User user = new User(
+                    name,
+                    Integer.parseInt(age),
+                    Long.parseLong(height),
+                    married
+            );
             result = mHelper.update(user);
             if (result >= 0) {
                 String desc = "更新了" + result + "条数据";
                 ToastUtil.show(this, desc);
+            }
+        } else if (v.getId() == R.id.btn_query) {
+            List<User> list = mHelper.queryAll();
+            for (User u : list) {
+                Log.d("x_log", u.toString());
             }
         }
     }
