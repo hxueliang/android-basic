@@ -56,7 +56,16 @@ public class EFileWriteActivity extends AppCompatActivity implements View.OnClic
             String directory = null;
 
             // 外部存储的私有空间
-            directory = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString();
+            // directory = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString();
+
+            // 外部存储的公共空间
+            /**
+             * 1. 代码修改 directory
+             * 2. 在清单文件配置权限
+             * 3. run app
+             * 4. 手机回到桌面，长按app图标 -> App info -> Permissions -> Files and media -> Allow access to media only
+             */
+            directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
 
             path = directory + File.separatorChar + fileName;
             Log.d("x_log", path);
