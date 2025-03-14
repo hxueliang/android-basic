@@ -56,6 +56,7 @@ public class EFileWriteActivity extends AppCompatActivity implements View.OnClic
             String directory = null;
 
             // 外部存储的私有空间
+            // /storage/emulated/0/Android/data/com.hxl.dlocaldatalasting/files/Download/
             // directory = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS).toString();
 
             // 外部存储的公共空间
@@ -65,7 +66,15 @@ public class EFileWriteActivity extends AppCompatActivity implements View.OnClic
              * 3. run app
              * 4. 手机回到桌面，长按app图标 -> App info -> Permissions -> Files and media -> Allow access to media only
              */
+            // /storage/emulated/0/Download/
             directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+
+            /**
+             * 测试 外部存储 "私有空间"和"公共空间"的区别
+             * 1.卸载app
+             * 2./storage/emulated/0/Android/data/ 里的包名文件已经不在了
+             * 3./storage/emulated/0/Download 里的文件还在
+             */
 
             path = directory + File.separatorChar + fileName;
             Log.d("x_log", path);
