@@ -1,7 +1,6 @@
 package com.hxl.dlocaldatalasting;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -67,7 +66,7 @@ public class EFileWriteActivity extends AppCompatActivity implements View.OnClic
              * 4. 手机回到桌面，长按app图标 -> App info -> Permissions -> Files and media -> Allow access to media only
              */
             // /storage/emulated/0/Download/
-            directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+            // directory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
 
             /**
              * 测试 外部存储 "私有空间"和"公共空间"的区别
@@ -75,6 +74,10 @@ public class EFileWriteActivity extends AppCompatActivity implements View.OnClic
              * 2./storage/emulated/0/Android/data/ 里的包名文件已经不在了
              * 3./storage/emulated/0/Download 里的文件还在
              */
+
+            // 内部存储空间
+            // /data/data/com.hxl.dlocaldatalasting/files/
+            directory = getFilesDir().toString();
 
             path = directory + File.separatorChar + fileName;
             Log.d("x_log", path);
