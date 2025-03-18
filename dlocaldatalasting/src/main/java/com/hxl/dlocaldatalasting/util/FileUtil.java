@@ -1,9 +1,11 @@
 package com.hxl.dlocaldatalasting.util;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -73,5 +75,26 @@ public class FileUtil {
                 }
             }
         }
+    }
+
+    // 从指定路径的图片文件中读取位图数据
+    public static Bitmap openImage(String path) {
+        Bitmap bitmap = null;
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(path);
+            bitmap = BitmapFactory.decodeStream(fis);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return bitmap;
     }
 }
