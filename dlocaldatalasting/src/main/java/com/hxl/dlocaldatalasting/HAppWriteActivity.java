@@ -7,12 +7,15 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hxl.dlocaldatalasting.util.ToastUtil;
+
 public class HAppWriteActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText et_name;
     private EditText et_age;
     private EditText et_height;
     private CheckBox ck_married;
+    private HMyApplication app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,8 @@ public class HAppWriteActivity extends AppCompatActivity implements View.OnClick
         et_height = findViewById(R.id.et_height);
         ck_married = findViewById(R.id.ck_married);
         findViewById(R.id.btn_save).setOnClickListener(this);
+
+        app = HMyApplication.getInstance();
     }
 
     @Override
@@ -32,5 +37,11 @@ public class HAppWriteActivity extends AppCompatActivity implements View.OnClick
         String age = et_age.getText().toString();
         String height = et_height.getText().toString();
         Boolean married = ck_married.isChecked();
+
+        app.infoMap.put("name", name);
+        app.infoMap.put("age", age);
+        app.infoMap.put("height", height);
+        app.infoMap.put("married", married ? "是" : "否");
+        ToastUtil.show(this, "保存成功");
     }
 }
