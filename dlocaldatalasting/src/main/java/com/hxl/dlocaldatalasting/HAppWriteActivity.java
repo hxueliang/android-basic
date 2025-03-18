@@ -29,6 +29,23 @@ public class HAppWriteActivity extends AppCompatActivity implements View.OnClick
         findViewById(R.id.btn_save).setOnClickListener(this);
 
         app = HMyApplication.getInstance();
+
+        reload();
+    }
+
+    private void reload() {
+        String name = app.infoMap.get("name");
+        String age = app.infoMap.get("age");
+        String height = app.infoMap.get("height");
+        String married = app.infoMap.get("married");
+
+        if (name == null) {
+            return;
+        }
+        et_name.setText(name);
+        et_age.setText(age);
+        et_height.setText(height);
+        ck_married.setChecked(married.equals("是"));
     }
 
     @Override
