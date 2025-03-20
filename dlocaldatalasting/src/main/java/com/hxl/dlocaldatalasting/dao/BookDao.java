@@ -22,7 +22,7 @@ public interface BookDao {
 
     // 删除所有书籍信息
     @Query("DELETE FROM BookInfo")
-    void deleteAll(BookInfo... book);
+    void deleteAll();
 
     @Update
     int update(BookInfo... book);
