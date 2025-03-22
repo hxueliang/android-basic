@@ -25,7 +25,7 @@ public class UserInfoProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         Log.d("x_log", "UserInfoProvider insert");
         // 当其它app访问的uri为以下uri时，就能访问到本Provider提供的数据
-        // content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/
+        // content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.insert(UserDBHelper.TABLE_NAME, null, values);
         return uri;
