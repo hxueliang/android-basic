@@ -10,7 +10,7 @@
         android:theme="@style/Theme.AndroidBasic">
         <provider
             android:name=".Provider.UserInfoProvider"
-            android:authorities="xxx"
+            android:authorities="com.hxl.econtentprovider_server.Provider.UserInfoProvider"
             android:enabled="true"
             android:exported="true" />
 
