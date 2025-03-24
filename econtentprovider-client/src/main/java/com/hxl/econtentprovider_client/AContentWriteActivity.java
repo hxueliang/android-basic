@@ -58,6 +58,20 @@ public class AContentWriteActivity extends AppCompatActivity implements View.OnC
             // toast
             ToastUtil.show(this, "添加成功");
         } else if (v.getId() == R.id.btn_delete) {
+            /**
+             * 删除多行
+             * com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
+             */
+            int count = getContentResolver().delete(UserInfoContent.CONTENT_URI, "name=?", new String[]{"hxl"});
+            /**
+             * 删除指定id的行
+             * content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/user/2
+             */
+            // Uri uri = ContentUris.withAppendedId(UserInfoContent.CONTENT_URI, 2);
+            // int count = getContentResolver().delete(uri, null, null);
+            if (count > 0) {
+                ToastUtil.show(this, "删除成功");
+            }
         } else if (v.getId() == R.id.btn_update) {
         } else if (v.getId() == R.id.btn_query) {
             Cursor cursor = getContentResolver().query(UserInfoContent.CONTENT_URI, null, null, null, null);
