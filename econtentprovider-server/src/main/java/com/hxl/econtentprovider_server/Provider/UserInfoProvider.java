@@ -36,9 +36,15 @@ public class UserInfoProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues values) {
         Log.d("x_log", "UserInfoProvider insert");
         // 当其它app访问的uri为以下uri时，就能访问到本Provider提供的数据
-        // content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.insert(UserDBHelper.TABLE_NAME, null, values);
+        // content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/xxx
+        // SQLiteDatabase db = dbHelper.getWritableDatabase();
+        // db.insert(UserDBHelper.TABLE_NAME, null, values);
+        if (URI_MATCHER.match(uri) == USERS) {
+            // 强制 xxx 为 user
+            // content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            db.insert(UserDBHelper.TABLE_NAME, null, values);
+        }
         return uri;
     }
 
@@ -76,8 +82,11 @@ public class UserInfoProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         Log.d("x_log", "UserInfoProvider query");
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.query(UserDBHelper.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+        Cursor cursor = null;
+        if (URI_MATCHER.match(uri) == USERS) {
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            cursor = db.query(UserDBHelper.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+        }
         return cursor;
     }
 
