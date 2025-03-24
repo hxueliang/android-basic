@@ -1,11 +1,11 @@
-package com.hxl.econtentprovider_server.Provider;
+package com.hxl.econtentprovider_client;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-public class UserInfoContent implements BaseColumns {
+public class AUserInfoContent implements BaseColumns {
 
-    public static final String AUTHORITIES = "com.hxl.econtentprovider_server.Provider.UserInfoProvider";
+    public static final String AUTHORITIES = "com.hxl.econtentprovider_server.Provider.AUserInfoProvider";
 
     // 访问内容提供器的URI
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITIES + "/user");

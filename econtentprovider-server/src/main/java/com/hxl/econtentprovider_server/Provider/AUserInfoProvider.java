@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
-import com.hxl.econtentprovider_server.database.UserDBHelper;
+import com.hxl.econtentprovider_server.database.AUserDBHelper;
 
 // 快捷方式：包名目录处右键->new->Other->Content Provider
-public class UserInfoProvider extends ContentProvider {
+public class AUserInfoProvider extends ContentProvider {
 
     private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
     private static final int USERS = 1;
@@ -19,16 +19,16 @@ public class UserInfoProvider extends ContentProvider {
 
     static {
         // 往Uri匹配器中添加指定的数据路径
-        URI_MATCHER.addURI(UserInfoContent.AUTHORITIES, "/user", USERS);
-        URI_MATCHER.addURI(UserInfoContent.AUTHORITIES, "/user/#", USER);
+        URI_MATCHER.addURI(AUserInfoContent.AUTHORITIES, "/user", USERS);
+        URI_MATCHER.addURI(AUserInfoContent.AUTHORITIES, "/user/#", USER);
     }
 
-    private UserDBHelper dbHelper;
+    private AUserDBHelper dbHelper;
 
     @Override
     public boolean onCreate() {
         Log.d("x_log", "UserInfoProvider onCreate");
-        dbHelper = UserDBHelper.getInstance(getContext());
+        dbHelper = AUserDBHelper.getInstance(getContext());
         return true;
     }
 
@@ -43,7 +43,7 @@ public class UserInfoProvider extends ContentProvider {
             // 强制 xxx 为 user
             // content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
             SQLiteDatabase db = dbHelper.getWritableDatabase();
-            db.insert(UserDBHelper.TABLE_NAME, null, values);
+            db.insert(AUserDBHelper.TABLE_NAME, null, values);
         }
         return uri;
     }
@@ -57,7 +57,7 @@ public class UserInfoProvider extends ContentProvider {
              * com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
              */
             SQLiteDatabase db1 = dbHelper.getWritableDatabase();
-            count = db1.delete(UserDBHelper.TABLE_NAME, selection, selectionArgs);
+            count = db1.delete(AUserDBHelper.TABLE_NAME, selection, selectionArgs);
             db1.close();
         } else if (URI_MATCHER.match(uri) == USER) {
             /**
@@ -66,7 +66,7 @@ public class UserInfoProvider extends ContentProvider {
              */
             final String id = uri.getLastPathSegment();
             final SQLiteDatabase db2 = dbHelper.getWritableDatabase();
-            count = db2.delete(UserDBHelper.TABLE_NAME, "_id=?", new String[]{id});
+            count = db2.delete(AUserDBHelper.TABLE_NAME, "_id=?", new String[]{id});
             db2.close();
         }
         return count;
@@ -85,7 +85,7 @@ public class UserInfoProvider extends ContentProvider {
         Cursor cursor = null;
         if (URI_MATCHER.match(uri) == USERS) {
             SQLiteDatabase db = dbHelper.getReadableDatabase();
-            cursor = db.query(UserDBHelper.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+            cursor = db.query(AUserDBHelper.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
         }
         return cursor;
     }

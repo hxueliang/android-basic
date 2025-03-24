@@ -6,7 +6,7 @@
         <!-- 写法一 -->
         <!-- <package android:name="com.hxl.econtentprovider_server" />-->
         <!-- 写法二 -->
-        <provider android:authorities="com.hxl.econtentprovider_server.Provider.UserInfoProvider" />
+        <provider android:authorities="com.hxl.econtentprovider_server.Provider.AUserInfoProvider" />
     </queries>
 
     <application

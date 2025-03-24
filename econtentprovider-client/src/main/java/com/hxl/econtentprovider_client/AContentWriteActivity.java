@@ -49,12 +49,12 @@ public class AContentWriteActivity extends AppCompatActivity implements View.OnC
         if (v.getId() == R.id.btn_add) {
             // 构建 values
             ContentValues values = new ContentValues();
-            values.put(UserInfoContent.USER_NAME, name);
-            values.put(UserInfoContent.USER_AGE, Integer.parseInt(age));
-            values.put(UserInfoContent.USER_HEIGHT, Float.parseFloat(height));
-            values.put(UserInfoContent.USER_MARRIED, married);
+            values.put(AUserInfoContent.USER_NAME, name);
+            values.put(AUserInfoContent.USER_AGE, Integer.parseInt(age));
+            values.put(AUserInfoContent.USER_HEIGHT, Float.parseFloat(height));
+            values.put(AUserInfoContent.USER_MARRIED, married);
             // 执行添加
-            getContentResolver().insert(UserInfoContent.CONTENT_URI, values);
+            getContentResolver().insert(AUserInfoContent.CONTENT_URI, values);
             // toast
             ToastUtil.show(this, "添加成功");
         } else if (v.getId() == R.id.btn_delete) {
@@ -62,7 +62,7 @@ public class AContentWriteActivity extends AppCompatActivity implements View.OnC
              * 删除多行
              * com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
              */
-            int count = getContentResolver().delete(UserInfoContent.CONTENT_URI, "name=?", new String[]{"hxl"});
+            int count = getContentResolver().delete(AUserInfoContent.CONTENT_URI, "name=?", new String[]{"hxl"});
             /**
              * 删除指定id的行
              * content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/user/2
@@ -74,16 +74,16 @@ public class AContentWriteActivity extends AppCompatActivity implements View.OnC
             }
         } else if (v.getId() == R.id.btn_update) {
         } else if (v.getId() == R.id.btn_query) {
-            Cursor cursor = getContentResolver().query(UserInfoContent.CONTENT_URI, null, null, null, null);
+            Cursor cursor = getContentResolver().query(AUserInfoContent.CONTENT_URI, null, null, null, null);
             if (cursor != null) {
                 // 构建 values
                 while (cursor.moveToNext()) {
                     User info = new User();
-                    info.id = cursor.getInt(cursor.getColumnIndex(UserInfoContent._ID));
-                    info.name = cursor.getString(cursor.getColumnIndex(UserInfoContent.USER_NAME));
-                    info.age = cursor.getInt(cursor.getColumnIndex(UserInfoContent.USER_AGE));
-                    info.height = cursor.getLong(cursor.getColumnIndex(UserInfoContent.USER_HEIGHT));
-                    info.married = cursor.getInt(cursor.getColumnIndex(UserInfoContent.USER_MARRIED)) == 1;
+                    info.id = cursor.getInt(cursor.getColumnIndex(AUserInfoContent._ID));
+                    info.name = cursor.getString(cursor.getColumnIndex(AUserInfoContent.USER_NAME));
+                    info.age = cursor.getInt(cursor.getColumnIndex(AUserInfoContent.USER_AGE));
+                    info.height = cursor.getLong(cursor.getColumnIndex(AUserInfoContent.USER_HEIGHT));
+                    info.married = cursor.getInt(cursor.getColumnIndex(AUserInfoContent.USER_MARRIED)) == 1;
                     Log.d("x_log", info.toString());
                 }
                 cursor.close();
