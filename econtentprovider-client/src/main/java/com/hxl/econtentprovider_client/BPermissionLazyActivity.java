@@ -43,12 +43,22 @@ public class BPermissionLazyActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_contact) {
+            /**
+             * 动态申请权限的步骤
+             * 1. 检查App是否开启了指定权限
+             *      调用 ContextCompat 的 checkSelfPermission 方法
+             * 2. 请求系统弹窗，以便用户选择是否开启权限
+             *      调用 ActivityCompat 的 requestPermissions 方法，即可命令系统自动弹出权限申请窗口
+             * 3. 判断用户的权限选择结果
+             *      重写活动页面的权限请求回调方法 onRequestPermissionsResult，在该方法内部处理用户权限选择结果
+             */
             PermissionUtil.checkPermission(this, PERMISSIONS_CONTACTS, REQUEST_CODE_CONTACTS);
         } else if (v.getId() == R.id.btn_sms) {
             PermissionUtil.checkPermission(this, PERMISSIONS_SMS, REQUEST_CODE_SMS);
         }
     }
 
+    // 3. 重写活动页面的权限请求回调方法 onRequestPermissionsResult，在该方法内部处理用户权限选择结果
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

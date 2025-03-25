@@ -15,6 +15,7 @@ public class PermissionUtil {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int check = PackageManager.PERMISSION_GRANTED;
             for (String permission : permissions) {
+                // 1. 检查App是否开启了指定权限
                 check = ContextCompat.checkSelfPermission(act, permission);
                 if (check != PackageManager.PERMISSION_GRANTED) {
                     break;
@@ -22,6 +23,7 @@ public class PermissionUtil {
             }
             // 未开启该权限，则请求系统弹窗，好让用户选择是否立即开启权限
             if (check != PackageManager.PERMISSION_GRANTED) {
+                // 2. 请求系统弹窗，以便用户选择是否开启权限
                 ActivityCompat.requestPermissions(act, permissions, requestCode);
                 return false;
             }
