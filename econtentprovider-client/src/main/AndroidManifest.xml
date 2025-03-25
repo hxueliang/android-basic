@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <!-- 出于安全考虑，Android 11 要求应用事先说明需要访问的其他软件包 -->
     <queries>
 
@@ -8,6 +13,12 @@
         <!-- 写法二 -->
         <provider android:authorities="com.hxl.econtentprovider_server.Provider.AUserInfoProvider" />
     </queries>
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
