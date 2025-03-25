@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
     <!-- 出于安全考虑，Android 11 要求应用事先说明需要访问的其他软件包 -->
     <queries>
+
         <!-- 写法一 -->
-        <!-- <package android:name="com.hxl.econtentprovider_server" />-->
+        <!-- <package android:name="com.hxl.econtentprovider_server" /> -->
         <!-- 写法二 -->
         <provider android:authorities="com.hxl.econtentprovider_server.Provider.AUserInfoProvider" />
     </queries>
@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBasic">
         <activity
-            android:name=".AContentWriteActivity"
+            android:name=".BPermissionLazyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
