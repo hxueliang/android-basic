@@ -78,6 +78,12 @@
         android:text="添加联系人" />
 
     <Button
+        android:id="@+id/btn_add_full"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加联系人（批处理方式）" />
+
+    <Button
         android:id="@+id/btn_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

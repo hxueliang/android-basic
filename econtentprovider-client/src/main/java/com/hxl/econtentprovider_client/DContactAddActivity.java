@@ -31,6 +31,7 @@ public class DContactAddActivity extends AppCompatActivity implements View.OnCli
         et_email = findViewById(R.id.et_email);
 
         findViewById(R.id.btn_add).setOnClickListener(this);
+        findViewById(R.id.btn_add_full).setOnClickListener(this);
         findViewById(R.id.btn_select).setOnClickListener(this);
     }
 
@@ -49,6 +50,7 @@ public class DContactAddActivity extends AppCompatActivity implements View.OnCli
 
             // 方式一：使用 ContentResolver 多次写入，每次一个字段
             addContents(getContentResolver(), contact);
+        } else if (v.getId() == R.id.btn_add_full) {
         } else if (v.getId() == R.id.btn_select) {
         }
     }
