@@ -1,10 +1,14 @@
 package com.hxl.econtentprovider_client;
 
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.OperationApplicationException;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
@@ -14,6 +18,8 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hxl.econtentprovider_client.entity.Contact;
+
+import java.util.ArrayList;
 
 public class DContactAddActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -51,6 +57,15 @@ public class DContactAddActivity extends AppCompatActivity implements View.OnCli
             // 方式一：使用 ContentResolver 多次写入，每次一个字段
             addContents(getContentResolver(), contact);
         } else if (v.getId() == R.id.btn_add_full) {
+            Contact contact = new Contact();
+            contact.name = name;
+            contact.phone = phone;
+            contact.email = email;
+
+            // 方式二：批处理方式
+            // 每一次操作都是一个 ContentProviderOperation，构建一个操作集合，然后一次性执行
+            // 好处是，要么全部成功，要么全部失败，保证事务的一致性
+            addFullContacts(getContentResolver(), contact);
         } else if (v.getId() == R.id.btn_select) {
         }
     }
@@ -98,5 +113,62 @@ public class DContactAddActivity extends AppCompatActivity implements View.OnCli
         email.put(Contacts.Data.DATA2, CommonDataKinds.Email.TYPE_WORK);
         // 添加
         resolver.insert(ContactsContract.Data.CONTENT_URI, email);
+    }
+
+    // 往手机通讯录一次性添加一个联系人信息（包括姓名、电话号码、电子邮箱）
+    private void addFullContacts(ContentResolver contentResolver, Contact contact) {
+        // 创建一个插入"联系人"主记录的内容操作器
+        ContentProviderOperation op_main = ContentProviderOperation
+                .newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null)
+                .build();
+
+        try {
+
+            // 先执行主操作，获取插入的raw_contact_id
+            ArrayList<ContentProviderOperation> operations = new ArrayList<>();
+            operations.add(op_main);
+            ContentProviderResult[] results = contentResolver.applyBatch(ContactsContract.AUTHORITY, operations);
+            Uri insertedUri = results[0].uri;
+            long rawContactId = ContentUris.parseId(insertedUri);
+
+            // 创建一个插入联系人"姓名"记录的内容操作器
+            ContentProviderOperation op_name = ContentProviderOperation
+                    .newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValue(Contacts.Data.RAW_CONTACT_ID, rawContactId)
+                    .withValue(Contacts.Data.MIMETYPE, CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+                    .withValue(Contacts.Data.DATA2, contact.name)
+                    .build();
+
+            // 创建一个插入联系人"电话号码"记录的内容操作器
+            ContentProviderOperation op_phone = ContentProviderOperation
+                    .newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValue(Contacts.Data.RAW_CONTACT_ID, rawContactId)
+                    .withValue(Contacts.Data.MIMETYPE, CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+                    .withValue(Contacts.Data.DATA1, contact.phone)
+                    .withValue(Contacts.Data.DATA2, CommonDataKinds.Phone.TYPE_MOBILE)
+                    .build();
+
+            // 创建一个插入联系人"电子邮箱"记录的内容操作器
+            ContentProviderOperation op_email = ContentProviderOperation
+                    .newInsert(ContactsContract.Data.CONTENT_URI)
+                    .withValue(Contacts.Data.RAW_CONTACT_ID, rawContactId)
+                    .withValue(Contacts.Data.MIMETYPE, CommonDataKinds.Email.CONTENT_ITEM_TYPE)
+                    .withValue(Contacts.Data.DATA1, contact.email)
+                    .withValue(Contacts.Data.DATA2, CommonDataKinds.Email.TYPE_WORK)
+                    .build();
+
+            operations = new ArrayList<>();
+            operations.add(op_name);
+            operations.add(op_phone);
+            operations.add(op_email);
+
+            // 批量提交4个操作，要么全部成功，要么全部失败
+            contentResolver.applyBatch(ContactsContract.AUTHORITY, operations);
+        } catch (OperationApplicationException e) {
+            throw new RuntimeException(e);
+        } catch (RemoteException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
