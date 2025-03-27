@@ -1,17 +1,20 @@
 package com.hxl.econtentprovider_client;
 
+import android.annotation.SuppressLint;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.OperationApplicationException;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds;
 import android.provider.ContactsContract.Contacts;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -67,7 +70,42 @@ public class DContactAddActivity extends AppCompatActivity implements View.OnCli
             // 好处是，要么全部成功，要么全部失败，保证事务的一致性
             addFullContacts(getContentResolver(), contact);
         } else if (v.getId() == R.id.btn_select) {
+            readPhoneContacts(getContentResolver());
         }
+    }
+
+    // 查询通讯录信息
+    @SuppressLint("Range")
+    private void readPhoneContacts(ContentResolver contentResolver) {
+        Cursor cursor = contentResolver.query(ContactsContract.RawContacts.CONTENT_URI, new String[]{ContactsContract.RawContacts._ID}, null, null, null);
+        while (cursor.moveToNext()) {
+            int rawContactId = cursor.getInt(0);
+            Uri uri = Uri.parse("content://com.android.contacts/contacts/" + rawContactId + "/data");
+            Cursor dataCursor = contentResolver.query(uri, new String[]{Contacts.Data.MIMETYPE, Contacts.Data.DATA1, Contacts.Data.DATA2}, null, null, null);
+            Contact contact = new Contact();
+            while (dataCursor.moveToNext()) {
+                String data1 = dataCursor.getString(dataCursor.getColumnIndex(Contacts.Data.DATA1));
+                String mimeType = dataCursor.getString(dataCursor.getColumnIndex(Contacts.Data.MIMETYPE));
+                switch (mimeType) {
+                    case CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE:
+                        contact.name = data1;
+                        break;
+                    case CommonDataKinds.Phone.CONTENT_ITEM_TYPE:
+                        contact.phone = data1;
+                        break;
+                    case CommonDataKinds.Email.CONTENT_ITEM_TYPE:
+                        contact.email = data1;
+                        break;
+                }
+            }
+            dataCursor.close();
+
+            // RawContacts 表中出现的 _id，不一定在 Data 表中都会有对应记录
+            if (contact.name != null) {
+                Log.d("x_log", contact.toString());
+            }
+        }
+        cursor.close();
     }
 
     // 往手机通讯录添加一个联系人信息（包括姓名、电话号码、电子邮箱）
