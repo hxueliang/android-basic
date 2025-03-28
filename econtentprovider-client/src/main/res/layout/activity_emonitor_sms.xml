@@ -10,4 +10,13 @@
         android:layout_height="wrap_content"
         android:text="短信观察器ContentObserver" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="点击模似上边的三个点按钮，在弹出窗口选择phone，输入短信内容，点击发送" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打开控制台查看" />
 </LinearLayout>
