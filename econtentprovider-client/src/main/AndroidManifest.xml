@@ -7,7 +7,6 @@
 
     <queries>
         <!-- 出于安全考虑，Android 11 要求应用事先说明需要访问的其他软件包 -->
-
         <!-- 写法一 -->
         <!-- <package android:name="com.hxl.econtentprovider_server" /> -->
         <!-- 写法二 -->
@@ -27,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidBasic">
         <activity
-            android:name=".EMonitorSmsActivity"
+            android:name=".FSendMmsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
