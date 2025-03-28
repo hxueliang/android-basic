@@ -44,6 +44,17 @@ public class AUserInfoProvider extends ContentProvider {
             // content://com.hxl.econtentprovider_server.Provider.UserInfoProvider/user
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             db.insert(AUserDBHelper.TABLE_NAME, null, values);
+            /*
+            Todo: 开启本段代码，记得注释第47行
+            long rowId = db.insert(AUserDBHelper.TABLE_NAME, null, values);
+            // 自己app的服务实现类似，短信通知服务功能
+            if (rowId > 0) { // 判断插入是否执行成功
+                // 如果添加成功，就利用新记录的行号生成新的地址
+                Uri newUri = ContentUris.withAppendedId(AUserInfoContent.CONTENT_URI, rowId);
+                // 通知监听器，数据已经改变
+                getContext().getContentResolver().notifyChange(newUri, null);
+            }
+            */
         }
         return uri;
     }
