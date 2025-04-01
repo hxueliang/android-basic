@@ -68,6 +68,12 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="点击下方图片开始发送彩信" />
+
+    <GridLayout
+        android:id="@+id/gl_appendix"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3" />
 </LinearLayout>
