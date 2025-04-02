@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">econtentprovider-client</string>
+    <string name="file_provider">com.hxl.econtentprovider_client.fileProvider</string>
 </resources>
