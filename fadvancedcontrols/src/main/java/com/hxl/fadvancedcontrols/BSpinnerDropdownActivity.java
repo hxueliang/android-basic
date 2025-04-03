@@ -33,7 +33,7 @@ public class BSpinnerDropdownActivity extends AppCompatActivity implements Adapt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        ToastUtil.show(this, "您选择的是：" + startArray);
+        ToastUtil.show(this, "您选择的是：" + startArray[position]);
     }
 
     @Override
