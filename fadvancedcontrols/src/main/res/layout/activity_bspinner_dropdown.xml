@@ -11,4 +11,9 @@
         android:text="下拉模式的列表框"
         android:textSize="17sp" />
 
+    <Spinner
+        android:id="@+id/sp_dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown" />
 </LinearLayout>
