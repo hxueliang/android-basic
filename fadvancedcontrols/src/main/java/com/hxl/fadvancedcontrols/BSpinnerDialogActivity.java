@@ -24,6 +24,8 @@ public class BSpinnerDialogActivity extends AppCompatActivity implements Adapter
 
         // 声明一个下拉列表的数组适配器
         ArrayAdapter<String> startAdapter = new ArrayAdapter<>(this, R.layout.b_item_select, startArray);
+        // 设置下拉框的标题。对话框模式才显示标题，下拉模式不显示标题
+        sp_dialog.setPrompt("请选择行星");
         sp_dialog.setAdapter(startAdapter);
         // 设置下拉框默认显示第一项
         sp_dialog.setSelection(0);
