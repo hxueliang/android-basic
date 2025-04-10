@@ -40,18 +40,31 @@ public class DPlanetBaseAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // 根据布局文件item_list.xml生成转换视图对象
-        final View v = LayoutInflater.from(mContext).inflate(R.layout.d_item_list, null);
-        final ImageView iv_icon = v.findViewById(R.id.iv_icon);
-        final TextView tv_name = v.findViewById(R.id.tv_name);
-        final TextView tv_desc = v.findViewById(R.id.tv_desc);
+        ViewHolder holder;
+        if (convertView == null) {
+            // 根据布局文件item_list.xml生成转换视图对象
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.d_item_list, null);
+            holder = new ViewHolder();
+            holder.iv_icon = convertView.findViewById(R.id.iv_icon);
+            holder.tv_name = convertView.findViewById(R.id.tv_name);
+            holder.tv_desc = convertView.findViewById(R.id.tv_desc);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
         // 控件设置数据
         final DPlanet dPlanet = mPlaneList.get(position);
-        iv_icon.setImageResource(dPlanet.image);
-        tv_name.setText(dPlanet.name);
-        tv_desc.setText(dPlanet.desc);
+        holder.iv_icon.setImageResource(dPlanet.image);
+        holder.tv_name.setText(dPlanet.name);
+        holder.tv_desc.setText(dPlanet.desc);
 
-        return v;
+        return convertView;
+    }
+
+    public final class ViewHolder {
+        public ImageView iv_icon;
+        public TextView tv_name;
+        public TextView tv_desc;
     }
 }
