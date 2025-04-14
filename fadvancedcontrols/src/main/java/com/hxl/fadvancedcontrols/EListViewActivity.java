@@ -38,6 +38,8 @@ public class EListViewActivity extends AppCompatActivity implements AdapterView.
 
         ck_divider = findViewById(R.id.ck_divider);
         ck_divider.setOnCheckedChangeListener(this);
+        ck_selector = findViewById(R.id.ck_selector);
+        ck_selector.setOnCheckedChangeListener(this);
 
     }
 
@@ -59,6 +61,14 @@ public class EListViewActivity extends AppCompatActivity implements AdapterView.
             } else {
                 lv_planet.setDivider(null);
                 lv_planet.setDividerHeight(0);
+            }
+        } else if (buttonView.getId() == R.id.ck_selector) {
+            // 显示按压背景
+            if (ck_selector.isChecked()) {
+                lv_planet.setSelector(R.drawable.list_selector);
+            } else {
+                Drawable drawable = getResources().getDrawable(R.color.transparent, getTheme());
+                lv_planet.setSelector(drawable);
             }
         }
     }
