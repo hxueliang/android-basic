@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hxl.fadvancedcontrols.R;
@@ -47,6 +48,7 @@ public class FPlanetListWithButtonAdapter extends BaseAdapter {
             // 根据布局文件item_list.xml生成转换视图对象
             convertView = LayoutInflater.from(mContext).inflate(R.layout.f_item_list_with_button, null);
             holder = new ViewHolder();
+            holder.ll_item = convertView.findViewById(R.id.ll_item);
             holder.iv_icon = convertView.findViewById(R.id.iv_icon);
             holder.tv_name = convertView.findViewById(R.id.tv_name);
             holder.tv_desc = convertView.findViewById(R.id.tv_desc);
@@ -58,6 +60,7 @@ public class FPlanetListWithButtonAdapter extends BaseAdapter {
 
         // 控件设置数据
         final DPlanet dPlanet = mPlaneList.get(position);
+        holder.ll_item.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         holder.iv_icon.setImageResource(dPlanet.image);
         holder.tv_name.setText(dPlanet.name);
         holder.tv_desc.setText(dPlanet.desc);
@@ -69,6 +72,7 @@ public class FPlanetListWithButtonAdapter extends BaseAdapter {
     }
 
     public final class ViewHolder {
+        public LinearLayout ll_item;
         public ImageView iv_icon;
         public TextView tv_name;
         public TextView tv_desc;

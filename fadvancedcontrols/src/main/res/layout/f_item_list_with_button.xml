@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal">
+    <!-- android:descendantFocusability="blocksDescendants" -->
     <!-- blocksDescendants可以阻止下级控件获得焦点，避免堵塞列表视图的点击事件 -->
 
     <ImageView
