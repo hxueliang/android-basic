@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
     android:orientation="horizontal">
+    <!-- blocksDescendants可以阻止下级控件获得焦点，避免堵塞列表视图的点击事件 -->
 
     <ImageView
         android:id="@+id/iv_icon"
