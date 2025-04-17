@@ -9,6 +9,11 @@
         android:id="@+id/gv_planet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="2" />
+        android:background="#00ffff"
+        android:columnWidth="100dp"
+        android:horizontalSpacing="3dp"
+        android:numColumns="2"
+        android:stretchMode="none"
+        android:verticalSpacing="3dp" />
 
 </LinearLayout>
