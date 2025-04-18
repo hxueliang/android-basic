@@ -27,6 +27,7 @@ public class GGridViewActivity extends AppCompatActivity implements AdapterView.
         dPlanetList = DPlanet.getDefaultList();
         final GPlanetGridAdapter gPlanetGridAdapter = new GPlanetGridAdapter(this, dPlanetList);
         gv_planet.setAdapter(gPlanetGridAdapter);
+        gv_planet.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
 
         gv_planet.setOnItemClickListener(this);
     }
