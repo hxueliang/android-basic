@@ -9,13 +9,21 @@ public class ASaleTicket implements Runnable {
     @Override
     public void run() {
         while (true) {
-            if (ticket > 0) {
-                Log.d("x_log", Thread.currentThread().getName() + "卖出第" + (total - ticket + 1) + "张票");
-                ticket--;
-            } else {
-                Log.d("x_log", "火车票卖完了");
-                break;
+            synchronized (this) {
+                if (ticket > 0) {
+                    Log.d("x_log", Thread.currentThread().getName() + "卖出第" + (total - ticket + 1) + "张票");
+                    ticket--;
+                } else {
+                    Log.d("x_log", "火车票卖完了");
+                    break;
+                }
             }
+        }
+
+        try {
+            Thread.sleep(20);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }
