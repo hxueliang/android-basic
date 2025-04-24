@@ -36,4 +36,20 @@ public class AExtendsThreadActivity extends AppCompatActivity {
         t1.start(); // Thread-4.run()
         t2.start(); // Thread-5.run()
     }
+
+    public void btnOnClickC(View view) {
+        testThreadC();
+    }
+
+    public void testThreadC() {
+        ASaleTicket saleTicket = new ASaleTicket();
+        Thread t1 = new Thread(saleTicket, "A代理");
+        Thread t2 = new Thread(saleTicket, "B代理");
+        Thread t3 = new Thread(saleTicket, "C代理");
+        Thread t4 = new Thread(saleTicket, "D代理");
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+    }
 }
