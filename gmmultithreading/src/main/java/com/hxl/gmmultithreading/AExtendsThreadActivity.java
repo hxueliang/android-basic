@@ -23,4 +23,17 @@ public class AExtendsThreadActivity extends AppCompatActivity {
         mt1.start(); // Thread-2.run()
         mt2.start(); // Thread-3.run()
     }
+
+    public void btnOnClickB(View view) {
+        testThreadB();
+    }
+
+    public void testThreadB() {
+        AMyRunnable mr1 = new AMyRunnable();
+        AMyRunnable mr2 = new AMyRunnable();
+        Thread t1 = new Thread(mr1);
+        Thread t2 = new Thread(mr2);
+        t1.start(); // Thread-4.run()
+        t2.start(); // Thread-5.run()
+    }
 }

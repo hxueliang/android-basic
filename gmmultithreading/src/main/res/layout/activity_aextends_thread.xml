@@ -8,9 +8,18 @@
     tools:context=".AMainActivity">
 
     <Button
+        android:id="@+id/btn_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="btnOnClick"
-        android:text="继承Thread" />
+        android:text="继承Thread类" />
+
+    <Button
+        android:id="@+id/btn_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_a"
+        android:onClick="btnOnClickB"
+        android:text="继承Runnable接口" />
 
 </RelativeLayout>
