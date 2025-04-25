@@ -26,6 +26,13 @@ public class BThreadPoolActivity extends AppCompatActivity {
 
         for (int i = 0; i < 10; i++) {
             int index = i;
+
+            try {
+                Thread.sleep(2 * 1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
             cachedThreadPool.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -42,6 +49,31 @@ public class BThreadPoolActivity extends AppCompatActivity {
                         pool-3-thread-3 9
                         pool-3-thread-6 7
                         pool-3-thread-5 8
+                     */
+
+                    /*
+                        newCachedThreadPool创建一个可绑缓存线程池，
+                        如果线程池长度超过处理需要，可灵活回收空闲线程，
+                        若无可回收，则新建线程。
+                     */
+
+                    /**
+                     * 执行一个任务休息2秒，Thread.sleep(2 * 1000);
+                     * 线程执行完上一次任务，被回收
+                     * 再执行下一次任务时，可以重复使用之前的线程，
+                     * 从而测试出非高并发的情况下，重复复用了这前的线程，不创建新线程。
+                     *
+                     * pool-3-thread-1 0
+                     * pool-3-thread-1 1
+                     * pool-3-thread-1 2
+                     * pool-3-thread-1 3
+                     * pool-3-thread-1 4
+                     * pool-3-thread-1 5
+                     * pool-3-thread-1 6
+                     * pool-3-thread-1 7
+                     * pool-3-thread-1 8
+                     * pool-3-thread-1 9
+                     *
                      */
                 }
             });
