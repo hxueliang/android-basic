@@ -85,5 +85,29 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void testFixed() {
+        final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3);
+
+        for (int i = 0; i < 10; i++) {
+            int index = i;
+            fixedThreadPool.execute(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("x_log", Thread.currentThread().getName() + " " + index);
+                    /*
+                        高并发，线程池是最多只有3个线程
+                        pool-5-thread-2 1
+                        pool-5-thread-1 0
+                        pool-5-thread-3 2
+                        pool-5-thread-3 3
+                        pool-5-thread-3 4
+                        pool-5-thread-3 5
+                        pool-5-thread-1 7
+                        pool-5-thread-3 8
+                        pool-5-thread-3 9
+                        pool-5-thread-2 6
+                     */
+                }
+            });
+        }
     }
 }
