@@ -106,6 +106,29 @@ public class BThreadPoolActivity extends AppCompatActivity {
                         pool-5-thread-3 9
                         pool-5-thread-2 6
                      */
+
+                    try {
+                        Thread.sleep(2 * 1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    /*
+                        测试，每个线程增加2秒的休眠时间
+                        pool-3-thread-2 1
+                        pool-3-thread-1 0
+                        pool-3-thread-3 2
+                        // 停2秒
+                        pool-3-thread-1 3
+                        pool-3-thread-2 4
+                        pool-3-thread-3 5
+                        // 停2秒
+                        pool-3-thread-1 6
+                        pool-3-thread-2 7
+                        pool-3-thread-3 8
+                        // 停2秒
+                        pool-3-thread-1 9
+                     */
                 }
             });
         }
