@@ -79,4 +79,11 @@ public class BThreadPoolActivity extends AppCompatActivity {
             });
         }
     }
+
+    public void btnOnClickFixed(View view) {
+        testFixed();
+    }
+
+    public void testFixed() {
+    }
 }

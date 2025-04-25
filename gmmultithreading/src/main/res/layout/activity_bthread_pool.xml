@@ -14,4 +14,11 @@
         android:onClick="btnOnClick"
         android:text="带缓存的线程池 cacheThreadPool" />
 
+    <Button
+        android:id="@+id/btn_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnOnClickFixed"
+        android:text="限制最大数量的线程池 fixedThreadPool" />
+
 </RelativeLayout>
