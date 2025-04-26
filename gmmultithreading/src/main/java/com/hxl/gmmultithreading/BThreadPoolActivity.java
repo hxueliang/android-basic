@@ -239,4 +239,13 @@ public class BThreadPoolActivity extends AppCompatActivity {
             }
         }, 2, 3, TimeUnit.SECONDS);
     }
+
+    public void btnOnClickStopPeriod(View view) {
+        testCancelPeriod();
+    }
+
+    public void testCancelPeriod() {
+        singleThreadScheduledExecutorB.shutdown();
+        Log.d("x_log", "stop");
+    }
 }

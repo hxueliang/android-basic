@@ -50,6 +50,13 @@
             android:layout_height="wrap_content"
             android:onClick="btnOnClickPeriod"
             android:text="定时+周期执行的线程池" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="btnOnClickStopPeriod"
+            android:text="停止" />
+
     </LinearLayout>
 
 </RelativeLayout>
