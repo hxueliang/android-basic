@@ -157,6 +157,7 @@ public class BThreadPoolActivity extends AppCompatActivity {
                     Log.d("x_log", Thread.currentThread().getName() + " " + index);
                     /**
                      * 高并发场景下，也只会创建一个线程执行
+                     *
                      * pool-3-thread-1 0
                      * pool-3-thread-1 1
                      * pool-3-thread-1 2
@@ -166,6 +167,36 @@ public class BThreadPoolActivity extends AppCompatActivity {
                      * pool-3-thread-1 6
                      * pool-3-thread-1 7
                      * pool-3-thread-1 8
+                     * pool-3-thread-1 9
+                     */
+
+                    try {
+                        Thread.sleep(2 * 1000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    /**
+                     * 测试，线程增加2秒的休眠时间
+                     *
+                     * pool-3-thread-1 0
+                     // 停2秒
+                     * pool-3-thread-1 1
+                     // 停2秒
+                     * pool-3-thread-1 2
+                     // 停2秒
+                     * pool-3-thread-1 3
+                     // 停2秒
+                     * pool-3-thread-1 4
+                     // 停2秒
+                     * pool-3-thread-1 5
+                     // 停2秒
+                     * pool-3-thread-1 6
+                     // 停2秒
+                     * pool-3-thread-1 7
+                     // 停2秒
+                     * pool-3-thread-1 8
+                     // 停2秒
                      * pool-3-thread-1 9
                      */
                 }
