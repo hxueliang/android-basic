@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class BThreadPoolActivity extends AppCompatActivity {
 
@@ -209,5 +211,14 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void testTiming() {
+        Log.d("x_log", "start");
+        final ScheduledExecutorService singleThreadScheduledExecutor = Executors.newSingleThreadScheduledExecutor();
+        // 定时3秒以后执行
+        singleThreadScheduledExecutor.schedule(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("x_log", "延迟3秒执行");
+            }
+        }, 3, TimeUnit.SECONDS);
     }
 }
