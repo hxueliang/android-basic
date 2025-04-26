@@ -136,4 +136,11 @@ public class BThreadPoolActivity extends AppCompatActivity {
             });
         }
     }
+
+    public void btnOnClickSingle(View view) {
+        testSingle();
+    }
+
+    public void testSingle() {
+    }
 }
