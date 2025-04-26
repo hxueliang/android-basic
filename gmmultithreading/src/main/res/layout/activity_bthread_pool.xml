@@ -28,4 +28,11 @@
         android:onClick="btnOnClickSingle"
         android:text="限制最大数量的线程池 singleThreadPool" />
 
+    <Button
+        android:id="@+id/btn_d"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnOnClickTiming"
+        android:text="定时执行的线程池" />
+
 </RelativeLayout>

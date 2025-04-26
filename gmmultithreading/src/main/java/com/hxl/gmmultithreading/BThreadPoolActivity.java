@@ -203,4 +203,11 @@ public class BThreadPoolActivity extends AppCompatActivity {
             });
         }
     }
+
+    public void btnOnClickTiming(View view) {
+        testTiming();
+    }
+
+    public void testTiming() {
+    }
 }
