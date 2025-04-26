@@ -221,4 +221,11 @@ public class BThreadPoolActivity extends AppCompatActivity {
             }
         }, 3, TimeUnit.SECONDS);
     }
+
+    public void btnOnClickPeriod(View view) {
+        testPeriod();
+    }
+
+    public void testPeriod() {
+    }
 }

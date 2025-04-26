@@ -18,6 +18,7 @@
         android:id="@+id/btn_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_a"
         android:onClick="btnOnClickFixed"
         android:text="限制最大数量的线程池 fixedThreadPool" />
 
@@ -25,6 +26,7 @@
         android:id="@+id/btn_c"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_b"
         android:onClick="btnOnClickSingle"
         android:text="限制最大数量的线程池 singleThreadPool" />
 
@@ -32,7 +34,22 @@
         android:id="@+id/btn_d"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_c"
         android:onClick="btnOnClickTiming"
         android:text="定时执行的线程池" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_d"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_e"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="btnOnClickPeriod"
+            android:text="定时+周期执行的线程池" />
+    </LinearLayout>
 
 </RelativeLayout>
