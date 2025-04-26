@@ -85,6 +85,9 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void testFixed() {
+        /**
+         * newFixedThreadPool 创建一个定长线程池，可以控制线程最大并发数，超出的线程会在队列中等待。
+         */
         final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(3);
 
         for (int i = 0; i < 10; i++) {
