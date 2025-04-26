@@ -142,5 +142,34 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void testSingle() {
+        /**
+         * newSingleTreadExecutor 创建一个单线程化的线程池，
+         * 它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO,LIFO,优先级)执行
+         */
+        final ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
+
+        for (int i = 0; i < 10; i++) {
+            int index = i;
+
+            singleThreadExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("x_log", Thread.currentThread().getName() + " " + index);
+                    /**
+                     * 高并发场景下，也只会创建一个线程执行
+                     * pool-3-thread-1 0
+                     * pool-3-thread-1 1
+                     * pool-3-thread-1 2
+                     * pool-3-thread-1 3
+                     * pool-3-thread-1 4
+                     * pool-3-thread-1 5
+                     * pool-3-thread-1 6
+                     * pool-3-thread-1 7
+                     * pool-3-thread-1 8
+                     * pool-3-thread-1 9
+                     */
+                }
+            });
+        }
     }
 }
