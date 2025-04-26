@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 public class BThreadPoolActivity extends AppCompatActivity {
 
+    private ScheduledExecutorService singleThreadScheduledExecutorB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,5 +229,14 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void testPeriod() {
+        Log.d("x_log", "start");
+        singleThreadScheduledExecutorB = Executors.newSingleThreadScheduledExecutor();
+        // 定时2秒以后执执行，每隔3秒执行一次
+        singleThreadScheduledExecutorB.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("x_log", "定时2秒以后执执行，每隔3秒执行一次");
+            }
+        }, 2, 3, TimeUnit.SECONDS);
     }
 }
