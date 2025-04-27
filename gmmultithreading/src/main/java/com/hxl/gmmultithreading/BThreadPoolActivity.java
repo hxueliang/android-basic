@@ -22,10 +22,6 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void btnOnClick(View view) {
-        testCached();
-    }
-
-    public void testCached() {
         final ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
 
         for (int i = 0; i < 10; i++) {
@@ -85,10 +81,6 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void btnOnClickFixed(View view) {
-        testFixed();
-    }
-
-    public void testFixed() {
         /**
          * newFixedThreadPool 创建一个定长线程池，可以控制线程最大并发数，超出的线程会在队列中等待。
          */
@@ -142,10 +134,6 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void btnOnClickSingle(View view) {
-        testSingle();
-    }
-
-    public void testSingle() {
         /**
          * newSingleTreadExecutor 创建一个单线程化的线程池，
          * 它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO,LIFO,优先级)执行
@@ -209,10 +197,6 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void btnOnClickTiming(View view) {
-        testTiming();
-    }
-
-    public void testTiming() {
         Log.d("x_log", "start");
         final ScheduledExecutorService singleThreadScheduledExecutor = Executors.newSingleThreadScheduledExecutor();
         // 定时3秒以后执行
@@ -225,10 +209,6 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void btnOnClickPeriod(View view) {
-        testPeriod();
-    }
-
-    public void testPeriod() {
         Log.d("x_log", "start");
         singleThreadScheduledExecutorB = Executors.newSingleThreadScheduledExecutor();
         // 定时2秒以后执执行，每隔3秒执行一次
@@ -241,10 +221,6 @@ public class BThreadPoolActivity extends AppCompatActivity {
     }
 
     public void btnOnClickStopPeriod(View view) {
-        testCancelPeriod();
-    }
-
-    public void testCancelPeriod() {
         singleThreadScheduledExecutorB.shutdown();
         Log.d("x_log", "stop");
     }
