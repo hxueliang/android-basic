@@ -23,7 +23,7 @@ public class CAsyncMessageActivity extends AppCompatActivity {
                     btn_a.setText("sendEmptyMessage");
                     break;
                 case 2:
-                    btn_b.setText("");
+                    btn_b.setText("sendEmptyMessageDelayed");
                     break;
             }
         }
@@ -54,5 +54,11 @@ public class CAsyncMessageActivity extends AppCompatActivity {
     }
 
     public void btnOnClickB(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handler.sendEmptyMessageDelayed(2, 2 * 1000);
+            }
+        }).start();
     }
 }
