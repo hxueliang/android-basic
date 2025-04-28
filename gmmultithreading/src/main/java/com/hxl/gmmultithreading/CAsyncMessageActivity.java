@@ -13,13 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CAsyncMessageActivity extends AppCompatActivity {
 
     private Button btn_a;
+    private Button btn_b;
 
     private final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
                 case 1:
-                    btn_a.setText("模似接口返回数据");
+                    btn_a.setText("sendEmptyMessage");
+                    break;
+                case 2:
+                    btn_b.setText("");
                     break;
             }
         }
@@ -31,6 +35,7 @@ public class CAsyncMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_casync_message);
 
         btn_a = findViewById(R.id.btn_a);
+        btn_b = findViewById(R.id.btn_b);
     }
 
     public void btnOnClickA(View view) {
@@ -46,5 +51,8 @@ public class CAsyncMessageActivity extends AppCompatActivity {
                 handler.sendEmptyMessage(1);
             }
         }).start();
+    }
+
+    public void btnOnClickB(View view) {
     }
 }
