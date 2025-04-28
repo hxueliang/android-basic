@@ -2,6 +2,7 @@ package com.hxl.gmmultithreading;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +14,7 @@ public class CAsyncMessageActivity extends AppCompatActivity {
 
     private Button btn_a;
 
-    private final Handler handler = new Handler() {
+    private final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             switch (msg.what) {
