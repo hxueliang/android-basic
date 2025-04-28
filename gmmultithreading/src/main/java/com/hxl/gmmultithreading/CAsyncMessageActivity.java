@@ -14,6 +14,7 @@ public class CAsyncMessageActivity extends AppCompatActivity {
 
     private Button btn_a;
     private Button btn_b;
+    private Button btn_c;
 
     private final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -24,6 +25,9 @@ public class CAsyncMessageActivity extends AppCompatActivity {
                     break;
                 case 2:
                     btn_b.setText("sendEmptyMessageDelayed");
+                    break;
+                case 3:
+                    btn_c.setText("");
                     break;
             }
         }
@@ -36,6 +40,7 @@ public class CAsyncMessageActivity extends AppCompatActivity {
 
         btn_a = findViewById(R.id.btn_a);
         btn_b = findViewById(R.id.btn_b);
+        btn_c = findViewById(R.id.btn_c);
     }
 
     public void btnOnClickA(View view) {
@@ -60,5 +65,8 @@ public class CAsyncMessageActivity extends AppCompatActivity {
                 handler.sendEmptyMessageDelayed(2, 2 * 1000);
             }
         }).start();
+    }
+
+    public void btnOnClickC(View view) {
     }
 }
