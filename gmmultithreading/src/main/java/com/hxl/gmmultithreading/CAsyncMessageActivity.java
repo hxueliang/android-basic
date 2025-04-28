@@ -27,7 +27,8 @@ public class CAsyncMessageActivity extends AppCompatActivity {
                     btn_b.setText("sendEmptyMessageDelayed");
                     break;
                 case 3:
-                    btn_c.setText("");
+                    String str = (String) msg.obj;
+                    btn_c.setText("sendMessage " + str);
                     break;
             }
         }
@@ -68,5 +69,20 @@ public class CAsyncMessageActivity extends AppCompatActivity {
     }
 
     public void btnOnClickC(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                Message message = new Message();
+                String data = "接口返回数据";
+                message.what = 3;
+                message.obj = data;
+                handler.sendMessage(message);
+            }
+        }).start();
     }
 }
