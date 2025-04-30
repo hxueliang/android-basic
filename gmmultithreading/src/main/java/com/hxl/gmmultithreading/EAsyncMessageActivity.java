@@ -40,5 +40,21 @@ public class EAsyncMessageActivity extends AppCompatActivity {
     }
 
     public void btnOnClickB(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn_b.setText("post发出的修改UI事件");
+                    }
+                });
+            }
+        }).start();
     }
 }
