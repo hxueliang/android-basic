@@ -21,6 +21,7 @@ public class EAsyncMessageActivity extends AppCompatActivity {
         }
     };
     private Button btn_b;
+    private Button btn_d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class EAsyncMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_easync_message);
 
         btn_b = findViewById(R.id.btn_b);
+        btn_d = findViewById(R.id.btn_d);
     }
 
     public void btnOnClickA(View view) {
@@ -65,5 +67,8 @@ public class EAsyncMessageActivity extends AppCompatActivity {
                 Log.d("x_log", "我在主线程：handler postDelayed");
             }
         }, 2 * 1000);
+    }
+
+    public void btnOnClickD(View view) {
     }
 }
