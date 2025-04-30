@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -26,5 +27,11 @@ public class EAsyncMessageActivity extends AppCompatActivity {
     }
 
     public void btnOnClickA(View view) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("x_log", "我在主线程：handler post");
+            }
+        });
     }
 }
