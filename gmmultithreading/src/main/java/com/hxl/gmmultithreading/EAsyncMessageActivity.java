@@ -59,5 +59,11 @@ public class EAsyncMessageActivity extends AppCompatActivity {
     }
 
     public void btnOnClickC(View view) {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("x_log", "我在主线程：handler postDelayed");
+            }
+        }, 2 * 1000);
     }
 }
