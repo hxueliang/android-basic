@@ -57,4 +57,7 @@ public class EAsyncMessageActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    public void btnOnClickC(View view) {
+    }
 }

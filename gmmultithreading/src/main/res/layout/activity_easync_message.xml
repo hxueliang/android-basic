@@ -22,4 +22,12 @@
         android:onClick="btnOnClickB"
         android:text="post 修改UI" />
 
+    <Button
+        android:id="@+id/btn_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_b"
+        android:onClick="btnOnClickC"
+        android:text="postDelayed" />
+
 </RelativeLayout>
