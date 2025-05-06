@@ -157,6 +157,20 @@ public class EAsyncMessageActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                /*
+                    runOnUiThread方法的原理
+                    源码
+
+                    public final void runOnUiThread(Runnable action) {
+                        if (Thread.currentThread() != mUiThread) {
+                            mHandler.post(action);
+                        } else {
+                            action.run();
+                        }
+                    }
+
+                    可以看出其本质也是handler.post
+                 */
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
