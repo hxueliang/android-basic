@@ -102,8 +102,35 @@ public class EAsyncMessageActivity extends AppCompatActivity {
     }
 
     public void btnOnClickE(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2 * 1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                btn_e.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn_e.setText("通过View.post 修复UI");
+                    }
+                });
+            }
+        }).start();
     }
 
     public void btnOnClickF(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                btn_f.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn_f.setText("通过View.postDelayed 修复UI");
+                    }
+                }, 2 * 1000);
+            }
+        }).start();
     }
 }
