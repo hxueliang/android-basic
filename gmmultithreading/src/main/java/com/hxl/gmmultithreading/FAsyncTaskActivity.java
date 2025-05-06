@@ -1,5 +1,6 @@
 package com.hxl.gmmultithreading;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,5 +20,29 @@ public class FAsyncTaskActivity extends AppCompatActivity {
     }
 
     public void btnOnClickA(View view) {
+        new MyTask().execute();
+    }
+
+    class MyTask extends AsyncTask<Void, Void, String> {
+
+        // 在异步线程中执行，即：子线程
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                Thread.sleep(2 * 1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            String str = "模拟网络返回数据";
+
+            return str;
+        }
+
+        // 切换到主线程执行
+        @Override
+        protected void onPostExecute(String s) {
+            btn_a.setText(s);
+        }
     }
 }
