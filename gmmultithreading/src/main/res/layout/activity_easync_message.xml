@@ -39,4 +39,20 @@
         android:onClick="btnOnClickD"
         android:text="postDelayed 修改UI" />
 
+    <Button
+        android:id="@+id/btn_e"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_d"
+        android:onClick="btnOnClickE"
+        android:text="View.post 修改UI" />
+
+    <Button
+        android:id="@+id/btn_f"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_e"
+        android:onClick="btnOnClickF"
+        android:text="View.postDelayed 修改UI" />
+
 </RelativeLayout>

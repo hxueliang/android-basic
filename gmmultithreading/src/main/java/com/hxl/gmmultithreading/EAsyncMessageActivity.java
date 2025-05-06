@@ -36,6 +36,8 @@ public class EAsyncMessageActivity extends AppCompatActivity {
     };
     private Button btn_b;
     private Button btn_d;
+    private Button btn_e;
+    private Button btn_f;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class EAsyncMessageActivity extends AppCompatActivity {
 
         btn_b = findViewById(R.id.btn_b);
         btn_d = findViewById(R.id.btn_d);
+        btn_e = findViewById(R.id.btn_e);
+        btn_f = findViewById(R.id.btn_f);
     }
 
     public void btnOnClickA(View view) {
@@ -95,5 +99,11 @@ public class EAsyncMessageActivity extends AppCompatActivity {
                 }, 2 * 1000);
             }
         }).start();
+    }
+
+    public void btnOnClickE(View view) {
+    }
+
+    public void btnOnClickF(View view) {
     }
 }
