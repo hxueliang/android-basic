@@ -110,6 +110,23 @@ public class EAsyncMessageActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
+                /*
+                    为什么View.post、postDelayed可以实现类似于Handle的效果呢
+                    下面是post方法的原码
+
+                    public boolean post(Runnable action) {
+                        Handler handler;
+                        if (mAttachInfo != null) {
+                            // 取当前UI线程里，自带的handler，赋值给局部的handler
+                            handler = mAttachInfo.mHandler;
+                        } else {
+                            ViewRoot.getRunQueue().post(action)
+                            return true;
+                        }
+                        // 使用局部的handler的post方法。即：View.post本质还是handler.post
+                        return handler.post(action);
+                    }
+                 */
                 btn_e.post(new Runnable() {
                     @Override
                     public void run() {
