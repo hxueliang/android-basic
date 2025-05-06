@@ -55,4 +55,12 @@
         android:onClick="btnOnClickF"
         android:text="View.postDelayed 修改UI" />
 
+    <Button
+        android:id="@+id/btn_g"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_f"
+        android:onClick="btnOnClickG"
+        android:text="runOnUIThread 修改UI" />
+
 </RelativeLayout>

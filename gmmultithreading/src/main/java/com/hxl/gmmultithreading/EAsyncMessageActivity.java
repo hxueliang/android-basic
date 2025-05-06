@@ -38,6 +38,7 @@ public class EAsyncMessageActivity extends AppCompatActivity {
     private Button btn_d;
     private Button btn_e;
     private Button btn_f;
+    private Button btn_g;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class EAsyncMessageActivity extends AppCompatActivity {
         btn_d = findViewById(R.id.btn_d);
         btn_e = findViewById(R.id.btn_e);
         btn_f = findViewById(R.id.btn_f);
+        btn_g = findViewById(R.id.btn_g);
     }
 
     public void btnOnClickA(View view) {
@@ -130,7 +132,7 @@ public class EAsyncMessageActivity extends AppCompatActivity {
                 btn_e.post(new Runnable() {
                     @Override
                     public void run() {
-                        btn_e.setText("通过View.post 修复UI");
+                        btn_e.setText("通过View.post 修改UI");
                     }
                 });
             }
@@ -144,9 +146,17 @@ public class EAsyncMessageActivity extends AppCompatActivity {
                 btn_f.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        btn_f.setText("通过View.postDelayed 修复UI");
+                        btn_f.setText("通过View.postDelayed 修改UI");
                     }
                 }, 2 * 1000);
+            }
+        }).start();
+    }
+
+    public void btnOnClickG(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
             }
         }).start();
     }
