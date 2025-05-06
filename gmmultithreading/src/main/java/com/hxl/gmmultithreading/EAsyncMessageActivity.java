@@ -157,6 +157,12 @@ public class EAsyncMessageActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        btn_g.setText("通过runOnUiThread 修改UI");
+                    }
+                });
             }
         }).start();
     }
