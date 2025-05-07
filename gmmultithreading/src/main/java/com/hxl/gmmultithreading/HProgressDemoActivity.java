@@ -27,29 +27,54 @@ public class HProgressDemoActivity extends AppCompatActivity {
         new DownloadTask().execute();
     }
 
-    class DownloadTask extends AsyncTask<Void, Void, String> {
+    class DownloadTask extends AsyncTask<Void, Integer, Boolean> {
+        int progress = 0;
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             Log.d("x_log 1", "准备下载");
+            pb_a.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected String doInBackground(Void... voids) {
+        protected Boolean doInBackground(Void... voids) {
             Log.d("x_log 2", "正在下载");
-            return "";
+            try {
+                // 永久循环，模拟下载文件
+                while (true) {
+                    // 每隔一秒下载10%
+                    Thread.sleep(1000);
+                    progress += 10;
+                    publishProgress(progress);
+                    if (progress >= 100) {
+                        break;
+                    }
+                }
+            } catch (Exception e) {
+                return false;
+            }
+            return true;
         }
 
         @Override
-        protected void onProgressUpdate(Void... values) {
+        protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-            Log.d("x_log 3", "更新下载");
+            Log.d("x_log 3", "已下载 " + values[0] + "%");
+            pb_a.setProgress(values[0]);
         }
 
         @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
+        protected void onPostExecute(Boolean b) {
+            super.onPostExecute(b);
             Log.d("x_log 4", "完成下载");
+
+            if (b) {
+                Log.d("x_log 5", "下载成功");
+                pb_a.setVisibility(View.GONE);
+            } else {
+                Log.d("x_log 5", "下载失败");
+            }
         }
     }
 }
