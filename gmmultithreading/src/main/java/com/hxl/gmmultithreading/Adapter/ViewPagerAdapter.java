@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.hxl.gmmultithreading.AsyncTask.BitmapTask;
 import com.hxl.gmmultithreading.R;
 
 public class ViewPagerAdapter extends PagerAdapter {
@@ -43,7 +44,13 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View layout = layoutInflater.inflate(R.layout.j_viewpager_item, null);
         ImageView iv = layout.findViewById(R.id.iv_item);
-        iv.setImageResource(datas[position]);
+
+        // 设置显示的图片
+        // iv.setImageResource(datas[position]);
+        // 异步任务加载图片
+        BitmapTask bitmapTask = new BitmapTask(context, iv);
+        bitmapTask.execute(datas[position]);
+
         container.addView(layout);
 
         return layout;
