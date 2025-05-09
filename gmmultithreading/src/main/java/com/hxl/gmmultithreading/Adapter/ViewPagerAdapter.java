@@ -4,9 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.hxl.gmmultithreading.R;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private final Context context;
@@ -38,6 +41,11 @@ public class ViewPagerAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        return super.instantiateItem(container, position);
+        View layout = layoutInflater.inflate(R.layout.j_viewpager_item, null);
+        ImageView iv = layout.findViewById(R.id.iv_item);
+        iv.setImageResource(datas[position]);
+        container.addView(layout);
+
+        return layout;
     }
 }

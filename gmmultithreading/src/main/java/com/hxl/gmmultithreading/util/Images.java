@@ -7,7 +7,6 @@ import com.hxl.gmmultithreading.R;
  */
 public class Images {
     public static int[] imageArray = new int[]{
-            R.drawable.boy,
             R.drawable.girl,
             R.drawable.green,
             R.drawable.grey,
