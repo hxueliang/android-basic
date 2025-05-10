@@ -47,6 +47,10 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         // 设置显示的图片
         // iv.setImageResource(datas[position]);
+
+        // 设置显示加载中的等待图片
+        iv.setImageResource(R.drawable.empty_image);
+
         // 异步任务加载图片
         BitmapTask bitmapTask = new BitmapTask(context, iv);
         bitmapTask.execute(datas[position]);
