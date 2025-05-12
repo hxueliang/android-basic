@@ -21,11 +21,13 @@ public class BitmapTask extends AsyncTask<Integer, Void, Bitmap> {
         res = integers[0];
 
         // 模拟从网络获取图片
+        /*
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        */
         // 根据图片资源ID，获取到对应的bitmap
         Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(), res);
 
