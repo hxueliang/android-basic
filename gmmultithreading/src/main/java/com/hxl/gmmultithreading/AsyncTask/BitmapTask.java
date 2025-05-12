@@ -22,7 +22,7 @@ public class BitmapTask extends AsyncTask<Integer, Void, Bitmap> {
 
         // 模拟从网络获取图片
         try {
-            Thread.sleep(2 * 1000);
+            Thread.sleep(100);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
