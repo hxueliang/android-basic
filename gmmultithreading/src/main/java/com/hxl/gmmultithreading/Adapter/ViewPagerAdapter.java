@@ -25,8 +25,8 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        // return Integer.MAX_VALUE; // 实现无限滑动(方案一:欺骗适配器)-1.设置一个很大的值
-        return datas.length; // 实现无限滑动(方案二:构造数据源)-6.直接取datas长
+        // return datas.length;
+        return Integer.MAX_VALUE; // 实现无限滑动(方案一:欺骗适配器)-1.设置一个很大的值
     }
 
     @Override
@@ -54,8 +54,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         // 异步任务加载图片
         BitmapTask bitmapTask = new BitmapTask(context, iv);
-        // bitmapTask.execute(datas[position % datas.length]); // 实现无限滑动(方案一:欺骗适配器)-2.取模
-        bitmapTask.execute(datas[position]); // 实现无限滑动(方案二:构造数据源)-7.直接取position
+        bitmapTask.execute(datas[position % datas.length]); // 实现无限滑动(方案一:欺骗适配器)-2.取模
 
         container.addView(layout);
 
