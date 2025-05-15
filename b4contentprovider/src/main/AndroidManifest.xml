@@ -17,6 +17,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.hxl.b4contentprovider.provider.PersonProvider"
+            android:authorities="com.hxl.b4contentprovider.provider.personprovider"
+            android:exported="true" />
     </application>
 
 </manifest>
