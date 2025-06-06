@@ -135,7 +135,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/et_selector"
                 android:hint="@string/input_verify_code"
-                android:inputType="numberPassword"
+                android:inputType="number"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColor="@color/black"
