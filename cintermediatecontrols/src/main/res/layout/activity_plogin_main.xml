@@ -63,6 +63,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_password"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_layout_height"
         android:orientation="horizontal">
@@ -101,6 +102,52 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:text="@string/forget_password"
+                android:textColor="@color/black"
+                android:textSize="@dimen/common_font_size" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_verify_code"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_layout_height"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/verify_code"
+            android:textColor="@color/black"
+            android:textSize="@dimen/common_font_size" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <EditText
+                android:id="@+id/et_verify"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/et_selector"
+                android:hint="@string/input_verify_code"
+                android:inputType="numberPassword"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:textSize="@dimen/common_font_size" />
+
+            <Button
+                android:id="@+id/btn_verify"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:text="@string/get_verify_code"
                 android:textColor="@color/black"
                 android:textSize="@dimen/common_font_size" />
         </RelativeLayout>
