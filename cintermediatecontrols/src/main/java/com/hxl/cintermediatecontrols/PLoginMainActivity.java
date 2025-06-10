@@ -1,5 +1,6 @@
 package com.hxl.cintermediatecontrols;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,7 +27,7 @@ import java.util.Random;
 
 public class PLoginMainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
 
-    private final String mPassword = "123456";
+    private String mPassword = "123456";
     private String mVerifyCode = "";
     private LinearLayout ll_password;
     private LinearLayout ll_verify_code;
@@ -70,7 +71,10 @@ public class PLoginMainActivity extends AppCompatActivity implements RadioGroup.
         register = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
             public void onActivityResult(ActivityResult o) {
-
+                Intent intent = o.getData();
+                if (intent != null && o.getResultCode() == Activity.RESULT_OK) {
+                    mPassword = intent.getStringExtra("new_password");
+                }
             }
         });
     }
