@@ -1,7 +1,9 @@
 package com.hxl.dlocaldatalasting;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -41,6 +43,7 @@ public class PLoginMainActivity extends AppCompatActivity implements RadioGroup.
     private RadioButton rb_password;
     private RadioButton rb_verify_code;
     private ActivityResultLauncher<Intent> register;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,24 @@ public class PLoginMainActivity extends AppCompatActivity implements RadioGroup.
                 }
             }
         });
+
+        preferences = getSharedPreferences("config", Context.MODE_PRIVATE);
+
+        reLoad();
+    }
+
+    private void reLoad() {
+        final boolean isRemember = preferences.getBoolean("isRemember", false);
+        if (!isRemember) {
+            return;
+        }
+
+        String phone = preferences.getString("phone", "");
+        String password = preferences.getString("password", "");
+
+        et_phone.setText(phone);
+        et_password.setText(password);
+        cb_remember.setChecked(true);
     }
 
     @Override
@@ -135,6 +156,8 @@ public class PLoginMainActivity extends AppCompatActivity implements RadioGroup.
     }
 
     private void loginSuccess() {
+        setRememberData();
+
         // Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
         String desc = String.format("您的手机号码是%s，恭喜你通过登录验证，点击'确定'按钮返回上个页面",
                 et_phone.getText().toString());
@@ -147,6 +170,23 @@ public class PLoginMainActivity extends AppCompatActivity implements RadioGroup.
         builder.setNegativeButton("我再看看", null);
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    private void setRememberData() {
+        String phone = "";
+        String password = "";
+        Boolean isRemember = false;
+        if (cb_remember.isChecked()) {
+            phone = et_phone.getText().toString();
+            password = et_password.getText().toString();
+            isRemember = cb_remember.isChecked();
+        }
+
+        final SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("phone", phone);
+        editor.putString("password", password);
+        editor.putBoolean("isRemember", isRemember);
+        editor.commit();
     }
 
     // 定义一个编辑框监听器，在输入文本达到指定长度时自动隐藏软键盘
