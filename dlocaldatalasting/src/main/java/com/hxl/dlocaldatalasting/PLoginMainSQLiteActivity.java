@@ -1,9 +1,7 @@
 package com.hxl.dlocaldatalasting;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,6 +21,8 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.hxl.dlocaldatalasting.database.LoginDBHelper;
+import com.hxl.dlocaldatalasting.enity.LoginInfo;
 import com.hxl.dlocaldatalasting.util.ViewUtil;
 
 import java.util.Random;
@@ -43,7 +43,8 @@ public class PLoginMainSQLiteActivity extends AppCompatActivity implements Radio
     private RadioButton rb_password;
     private RadioButton rb_verify_code;
     private ActivityResultLauncher<Intent> register;
-    private SharedPreferences preferences;
+    // private SharedPreferences preferences;
+    private LoginDBHelper mHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,24 +81,37 @@ public class PLoginMainSQLiteActivity extends AppCompatActivity implements Radio
                 }
             }
         });
-
-        preferences = getSharedPreferences("config", Context.MODE_PRIVATE);
-
-        reLoad();
     }
 
     private void reLoad() {
-        final boolean isRemember = preferences.getBoolean("isRemember", false);
-        if (!isRemember) {
+        LoginInfo info = mHelper.queryRememberTop();
+
+        if (info == null || !info.remember) {
             return;
         }
 
-        String phone = preferences.getString("phone", "");
-        String password = preferences.getString("password", "");
+        String phone = info.phone;
+        String password = info.password;
 
         et_phone.setText(phone);
         et_password.setText(password);
         cb_remember.setChecked(true);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mHelper = LoginDBHelper.getInstance(this);
+        mHelper.openReadLink();
+        mHelper.openWriteLink();
+
+        reLoad();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mHelper.closeLink();
     }
 
     @Override
@@ -173,20 +187,12 @@ public class PLoginMainSQLiteActivity extends AppCompatActivity implements Radio
     }
 
     private void setRememberData() {
-        String phone = "";
-        String password = "";
-        Boolean isRemember = false;
-        if (cb_remember.isChecked()) {
-            phone = et_phone.getText().toString();
-            password = et_password.getText().toString();
-            isRemember = cb_remember.isChecked();
-        }
-
-        final SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("phone", phone);
-        editor.putString("password", password);
-        editor.putBoolean("isRemember", isRemember);
-        editor.commit();
+        // 保存到数据库
+        LoginInfo info = new LoginInfo();
+        info.phone = et_phone.getText().toString();
+        info.password = et_password.getText().toString();
+        info.remember = cb_remember.isChecked();
+        mHelper.save(info);
     }
 
     // 定义一个编辑框监听器，在输入文本达到指定长度时自动隐藏软键盘
