@@ -118,4 +118,22 @@ public class LoginDBHelper extends SQLiteOpenHelper {
 
         return info;
     }
+
+    public LoginInfo queryByPhone(String phone) {
+        LoginInfo info = null;
+
+        String sql = "select * from " + TABLE_NAME + " where remember = 1 ORDER BY _id DESC limit 1";
+
+        // 执行记录查询动作，该语句返回结果集的游标
+        Cursor cursor = mRDB.query(TABLE_NAME, null, "phone=? and remember=1", new String[]{phone}, null, null, null);
+        if (cursor.moveToNext()) {
+            info = new LoginInfo();
+            info.id = cursor.getInt(0);
+            info.phone = cursor.getString(1);
+            info.password = cursor.getString(2);
+            info.remember = cursor.getInt(3) == 1;
+        }
+
+        return info;
+    }
 }

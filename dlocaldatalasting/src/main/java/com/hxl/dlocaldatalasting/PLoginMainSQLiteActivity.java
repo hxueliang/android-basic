@@ -27,7 +27,7 @@ import com.hxl.dlocaldatalasting.util.ViewUtil;
 
 import java.util.Random;
 
-public class PLoginMainSQLiteActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class PLoginMainSQLiteActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener, View.OnFocusChangeListener {
 
     private String mPassword = "123456";
     private String mVerifyCode = "";
@@ -81,6 +81,8 @@ public class PLoginMainSQLiteActivity extends AppCompatActivity implements Radio
                 }
             }
         });
+
+        et_password.setOnFocusChangeListener(this);
     }
 
     private void reLoad() {
@@ -193,6 +195,22 @@ public class PLoginMainSQLiteActivity extends AppCompatActivity implements Radio
         info.password = et_password.getText().toString();
         info.remember = cb_remember.isChecked();
         mHelper.save(info);
+    }
+
+    // 当密码输入框获取焦点后，根据输入的手机号码，查出对应的密码，自动填入
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (v.getId() == R.id.et_password && hasFocus) {
+            LoginInfo info = mHelper.queryByPhone(et_phone.getText().toString());
+            if (info != null) {
+                et_password.setText(info.password);
+                cb_remember.setChecked(info.remember);
+            } else {
+                et_password.setText("");
+                cb_remember.setChecked(false);
+            }
+
+        }
     }
 
     // 定义一个编辑框监听器，在输入文本达到指定长度时自动隐藏软键盘
