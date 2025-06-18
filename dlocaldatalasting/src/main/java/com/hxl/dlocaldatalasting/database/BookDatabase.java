@@ -13,6 +13,7 @@ import com.hxl.dlocaldatalasting.enity.BookInfo;
  * entities 表示该数据库有哪些表，
  * version 表示数据库的版本号
  * exportSchema 表示是否导出数据库信息的json串，建议设为false，若设置为true还需要指定json文件的保存路径
+ * 在/android-basic/dlocaldatalasting/build.gradle这个文件里，设置保存路径
  */
 @Database(entities = {BookInfo.class}, version = 1, exportSchema = true)
 public abstract class BookDatabase extends RoomDatabase {

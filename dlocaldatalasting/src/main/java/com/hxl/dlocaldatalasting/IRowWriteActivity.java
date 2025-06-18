@@ -75,6 +75,7 @@ public class IRowWriteActivity extends AppCompatActivity implements View.OnClick
             bookDao.update(b3);
         } else if (v.getId() == R.id.btn_query) {
             List<BookInfo> list = bookDao.queryAll();
+            // 快捷：list.for回车
             for (BookInfo b : list) {
                 Log.d("x_log", b.toString());
             }
