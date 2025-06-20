@@ -2,11 +2,13 @@ package com.hxl.dlocaldatalasting.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.hxl.dlocaldatalasting.enity.GoodsInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingDBHelper extends SQLiteOpenHelper {
@@ -107,5 +109,22 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
         } finally {
             mWDB.endTransaction();
         }
+    }
+
+    public List<GoodsInfo> queryAllGoodsInfo() {
+        String sql = "select * from " + TABLE_GOODS_INFO;
+        List<GoodsInfo> list = new ArrayList<>();
+        Cursor cursor = mRDB.rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            GoodsInfo info = new GoodsInfo();
+            info.id = cursor.getInt(0);
+            info.name = cursor.getString(1);
+            info.description = cursor.getString(2);
+            info.price = cursor.getFloat(3);
+            info.picPath = cursor.getString(4);
+            list.add(info);
+        }
+        cursor.close();
+        return list;
     }
 }
