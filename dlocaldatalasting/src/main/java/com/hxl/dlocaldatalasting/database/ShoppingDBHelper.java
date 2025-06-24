@@ -152,7 +152,7 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
     }
 
     private CartInfo queryCartInfoByGoodsInfo(int goodsId) {
-        final Cursor cursor = mRDB.query(TABLE_CART_INFO, null, "good_id=?", new String[]{String.valueOf(goodsId)}, null, null, null, null);
+        final Cursor cursor = mRDB.query(TABLE_CART_INFO, null, "goods_id=?", new String[]{String.valueOf(goodsId)}, null, null, null, null);
         CartInfo info = null;
         if (cursor.moveToNext()) {
             info = new CartInfo();
@@ -168,7 +168,7 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
      */
     public int countCartInfo() {
         int count = 0;
-        String sql = "select sum(count) from" + TABLE_CART_INFO;
+        String sql = "select sum(count) from " + TABLE_CART_INFO;
         final Cursor cursor = mRDB.rawQuery(sql, null);
         if (cursor.moveToNext()) {
             count = cursor.getInt(0);
