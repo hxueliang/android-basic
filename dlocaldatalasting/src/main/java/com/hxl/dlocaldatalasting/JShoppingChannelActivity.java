@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hxl.dlocaldatalasting.database.ShoppingDBHelper;
 import com.hxl.dlocaldatalasting.enity.GoodsInfo;
+import com.hxl.dlocaldatalasting.util.ToastUtil;
 
 import java.util.List;
 
@@ -41,6 +43,22 @@ public class JShoppingChannelActivity extends AppCompatActivity {
         showGoods();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        showCartInfoTotal();
+    }
+
+    /**
+     * 查询购物车商品总数，并展示
+     */
+    private void showCartInfoTotal() {
+        final int count = mDBHelper.countCartInfo();
+        IMyApplication.getInstance().goodsCount = count;
+        tv_count.setText(String.valueOf(count));
+    }
+
     /**
      * 从数据库查询商品信息，并展示
      */
@@ -57,15 +75,36 @@ public class JShoppingChannelActivity extends AppCompatActivity {
             final TextView tv_name = view.findViewById(R.id.tv_name);
             final ImageView iv_thumb = view.findViewById(R.id.iv_thumb);
             final TextView tv_price = view.findViewById(R.id.tv_price);
+            final Button btn_add = view.findViewById(R.id.btn_add);
 
 
             tv_name.setText(info.name);
             iv_thumb.setImageURI(Uri.parse(info.picPath));
             tv_price.setText(String.valueOf((int) info.price));
 
+            // 添加到购物车
+            btn_add.setOnClickListener(v -> {
+                addToCard(info.id, info.name);
+            });
+
             // 把商品视图添加到网络布局
             gl_channel.addView(view, params);
         }
+    }
+
+    /**
+     * 把指定编号的商品添加到购物车
+     *
+     * @param goodsId
+     * @param goodsName
+     */
+    private void addToCard(int goodsId, String goodsName) {
+        // 购物车数量+1
+        int count = ++IMyApplication.getInstance().goodsCount;
+        tv_count.setText(String.valueOf(count));
+        // 添加商品到购物车数据库
+        mDBHelper.insertCartInfo(goodsId);
+        ToastUtil.show(this, "已添加一部" + goodsName + "到购物车");
     }
 
     @Override

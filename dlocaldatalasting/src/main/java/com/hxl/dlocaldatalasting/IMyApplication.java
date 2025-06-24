@@ -21,7 +21,8 @@ public class IMyApplication extends Application {
 
     private static IMyApplication mApp;
     public HashMap<String, String> infoMap = new HashMap<>();
-
+    // 购物车中商品总数量
+    public int goodsCount;
     // 4. 在自定义的Application类中声明书籍数据库的唯一实例
     private BookDatabase bookDatabase;
 
