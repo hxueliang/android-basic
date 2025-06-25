@@ -160,7 +160,7 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
             info.goodsId = cursor.getInt(1);
             info.count = cursor.getInt(2);
         }
-        return null;
+        return info;
     }
 
     /**
