@@ -1,5 +1,6 @@
 package com.hxl.dlocaldatalasting;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,7 +19,7 @@ import com.hxl.dlocaldatalasting.util.ToastUtil;
 
 import java.util.List;
 
-public class JShoppingChannelActivity extends AppCompatActivity {
+public class JShoppingChannelActivity extends AppCompatActivity implements View.OnClickListener {
 
     // 声明一个商品数据库帮助对象
     private ShoppingDBHelper mDBHelper;
@@ -35,6 +36,8 @@ public class JShoppingChannelActivity extends AppCompatActivity {
 
         tv_count = findViewById(R.id.tv_count);
         gl_channel = findViewById(R.id.gl_channel);
+        findViewById(R.id.iv_back).setOnClickListener(this);
+        findViewById(R.id.iv_cart).setOnClickListener(this);
 
         mDBHelper = ShoppingDBHelper.getInstance(this);
         mDBHelper.openWriteLink();
@@ -111,5 +114,17 @@ public class JShoppingChannelActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mDBHelper.closeLink();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.iv_back) {
+            finish();
+        } else if (v.getId() == R.id.iv_cart) {
+            // 跳转购物车页面
+            final Intent intent = new Intent(this, JShoppingCartActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        }
     }
 }
