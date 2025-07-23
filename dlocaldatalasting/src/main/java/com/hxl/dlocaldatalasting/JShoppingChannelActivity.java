@@ -72,6 +72,10 @@ public class JShoppingChannelActivity extends AppCompatActivity implements View.
 
         // 查询商品数据库存中所有商品记录
         List<GoodsInfo> list = mDBHelper.queryAllGoodsInfo();
+
+        // 移除下面的所有子视图
+        gl_channel.removeAllViews();
+
         for (GoodsInfo info : list) {
             // 获取布局文件item_goods.xml的根视图
             final View view = LayoutInflater.from(this).inflate(R.layout.item_goods, null);

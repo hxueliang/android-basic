@@ -176,4 +176,32 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
 
         return count;
     }
+
+    public List<CartInfo> queryAllCartInfo() {
+        List<CartInfo> list = new ArrayList<>();
+        final Cursor cursor = mRDB.query(TABLE_CART_INFO, null, null, null, null, null, null);
+        if (cursor.moveToNext()) {
+            CartInfo info = new CartInfo();
+            info.id = cursor.getInt(0);
+            info.goodsId = cursor.getInt(1);
+            info.count = cursor.getInt(2);
+            list.add(info);
+        }
+        return list;
+    }
+
+    // 根据商品ID查询商品信息
+    public GoodsInfo queryGoodsInfoById(int goodsId) {
+        GoodsInfo info = null;
+        final Cursor cursor = mRDB.query(TABLE_GOODS_INFO, null, "id=?", new String[]{String.valueOf(goodsId)}, null, null, null);
+        if (cursor.moveToNext()) {
+            info = new GoodsInfo();
+            info.id = cursor.getInt(0);
+            info.name = cursor.getString(1);
+            info.description = cursor.getString(2);
+            info.price = cursor.getFloat(3);
+            info.picPath = cursor.getString(4);
+        }
+        return info;
+    }
 }
