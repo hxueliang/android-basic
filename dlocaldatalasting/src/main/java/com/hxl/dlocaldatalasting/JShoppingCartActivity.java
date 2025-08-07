@@ -1,6 +1,10 @@
 package com.hxl.dlocaldatalasting;
 
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JShoppingCartActivity extends AppCompatActivity {
+public class JShoppingCartActivity extends AppCompatActivity implements View.OnClickListener {
     // 声明一个根据商品编号查找商品信息的映射，把商品信息缓存起来，这样不用每一次都去查询数据库
     private final Map<Integer, GoodsInfo> mGoodsMap = new HashMap<>();
     private TextView tv_count;
@@ -22,6 +26,7 @@ public class JShoppingCartActivity extends AppCompatActivity {
     private ShoppingDBHelper mDBHelper;
     // 声明一个购物车中的商品信息列表
     private List<CartInfo> mCartList;
+    private TextView tv_total_price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +35,12 @@ public class JShoppingCartActivity extends AppCompatActivity {
         final TextView tv_title = findViewById(R.id.tv_title);
         tv_title.setText("购物车页");
         ll_cart = findViewById(R.id.ll_cart);
+        tv_total_price = findViewById(R.id.tv_total_price);
 
         tv_count = findViewById(R.id.tv_count);
         tv_count.setText(String.valueOf(IMyApplication.getInstance().goodsCount));
+
+        findViewById(R.id.iv_back).setOnClickListener(this);
 
         mDBHelper = ShoppingDBHelper.getInstance(this);
     }
@@ -55,8 +63,45 @@ public class JShoppingCartActivity extends AppCompatActivity {
         for (CartInfo info : mCartList) {
             // 根据商品编号查询商品数据库中的商品记录
             GoodsInfo goods = mDBHelper.queryGoodsInfoById(info.goodsId);
-            mGoodsMap.put(goods.id, goods);
+            mGoodsMap.put(info.goodsId, goods);
 
+            // 获取布局文件item_cart.xml的根视图
+            final View view = LayoutInflater.from(this).inflate(R.layout.item_cart, null);
+            final ImageView iv_thumb = view.findViewById(R.id.iv_thumb);
+            final TextView tv_name = view.findViewById(R.id.tv_name);
+            final TextView tv_desc = view.findViewById(R.id.tv_desc);
+            final TextView tv_count = view.findViewById(R.id.tv_count);
+            final TextView tv_price = view.findViewById(R.id.tv_price);
+            final TextView tv_sum = view.findViewById(R.id.tv_sum);
+
+            iv_thumb.setImageURI(Uri.parse(goods.picPath));
+            tv_name.setText(goods.name);
+            tv_desc.setText(goods.description);
+            tv_count.setText(String.valueOf(info.count));
+            tv_price.setText(String.valueOf((int) goods.price));
+            tv_sum.setText(String.valueOf((int) (info.count * goods.price)));
+
+            // 往购物车列表添加该商品行
+            ll_cart.addView(view);
+        }
+
+        refreshTotalPrice();
+    }
+
+    // 重新计算购物车中的商品总金额
+    private void refreshTotalPrice() {
+        int totalPrice = 0;
+        for (CartInfo info : mCartList) {
+            final GoodsInfo goods = mGoodsMap.get(info.goodsId);
+            totalPrice += goods.price * info.count;
+        }
+        tv_total_price.setText(String.valueOf(totalPrice));
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.iv_back) {
+            finish();
         }
     }
 }

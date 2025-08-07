@@ -91,7 +91,7 @@ public class JShoppingChannelActivity extends AppCompatActivity implements View.
 
             // 添加到购物车
             btn_add.setOnClickListener(v -> {
-                addToCard(info.id, info.name);
+                addToCart(info.id, info.name);
             });
 
             // 把商品视图添加到网络布局
@@ -105,7 +105,7 @@ public class JShoppingChannelActivity extends AppCompatActivity implements View.
      * @param goodsId
      * @param goodsName
      */
-    private void addToCard(int goodsId, String goodsName) {
+    private void addToCart(int goodsId, String goodsName) {
         // 购物车数量+1
         int count = ++IMyApplication.getInstance().goodsCount;
         tv_count.setText(String.valueOf(count));

@@ -177,10 +177,15 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    /**
+     * 查询购物车中所有的信息列表
+     *
+     * @return
+     */
     public List<CartInfo> queryAllCartInfo() {
         List<CartInfo> list = new ArrayList<>();
         final Cursor cursor = mRDB.query(TABLE_CART_INFO, null, null, null, null, null, null);
-        if (cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             CartInfo info = new CartInfo();
             info.id = cursor.getInt(0);
             info.goodsId = cursor.getInt(1);
@@ -193,7 +198,7 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
     // 根据商品ID查询商品信息
     public GoodsInfo queryGoodsInfoById(int goodsId) {
         GoodsInfo info = null;
-        final Cursor cursor = mRDB.query(TABLE_GOODS_INFO, null, "id=?", new String[]{String.valueOf(goodsId)}, null, null, null);
+        final Cursor cursor = mRDB.query(TABLE_GOODS_INFO, null, "_id=?", new String[]{String.valueOf(goodsId)}, null, null, null);
         if (cursor.moveToNext()) {
             info = new GoodsInfo();
             info.id = cursor.getInt(0);
