@@ -209,4 +209,14 @@ public class ShoppingDBHelper extends SQLiteOpenHelper {
         }
         return info;
     }
+
+    // 根据商品ID删除购物车信息
+    public void deleteCartInfoByGoodsId(int goodsId) {
+        mWDB.delete(TABLE_CART_INFO, "goods_id=?", new String[]{String.valueOf(goodsId)});
+    }
+
+    // 删除购物车信息
+    public void deleteAllCartInfo() {
+        mWDB.delete(TABLE_CART_INFO, "1=1", null);
+    }
 }

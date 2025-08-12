@@ -1,5 +1,6 @@
 package com.hxl.dlocaldatalasting;
 
+import android.app.AlertDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hxl.dlocaldatalasting.database.ShoppingDBHelper;
 import com.hxl.dlocaldatalasting.enity.CartInfo;
 import com.hxl.dlocaldatalasting.enity.GoodsInfo;
+import com.hxl.dlocaldatalasting.util.ToastUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +29,8 @@ public class JShoppingCartActivity extends AppCompatActivity implements View.OnC
     // 声明一个购物车中的商品信息列表
     private List<CartInfo> mCartList;
     private TextView tv_total_price;
+    private LinearLayout ll_empty;
+    private View ll_content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class JShoppingCartActivity extends AppCompatActivity implements View.OnC
 
         tv_count = findViewById(R.id.tv_count);
         tv_count.setText(String.valueOf(IMyApplication.getInstance().goodsCount));
+
+        ll_empty = findViewById(R.id.ll_empty);
+        ll_content = findViewById(R.id.ll_content);
 
         findViewById(R.id.iv_back).setOnClickListener(this);
 
@@ -81,11 +88,66 @@ public class JShoppingCartActivity extends AppCompatActivity implements View.OnC
             tv_price.setText(String.valueOf((int) goods.price));
             tv_sum.setText(String.valueOf((int) (info.count * goods.price)));
 
+            // 给商品行添加长按事件。长按商品行就删除该商品
+            view.setOnLongClickListener(v -> {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(JShoppingCartActivity.this);
+                builder.setMessage("是否从购物车中删除" + goods.name + "?");
+                builder.setPositiveButton("是", (dialog, which) -> {
+                    // 移除当前视图
+                    ll_cart.removeView(v);
+                    // 删除当前商品
+                    deleteGoods(info);
+                });
+                builder.setNegativeButton("否", null);
+                builder.create().show();
+                return true;
+            });
+
             // 往购物车列表添加该商品行
             ll_cart.addView(view);
         }
 
         refreshTotalPrice();
+    }
+
+    private void deleteGoods(CartInfo info) {
+        IMyApplication.getInstance().goodsCount -= info.count;
+        // 从购物车数据库中删除商品
+        mDBHelper.deleteCartInfoByGoodsId(info.goodsId);
+
+        // 从购物车的列表中删除商品
+        CartInfo removed = null;
+        for (CartInfo cartInfo : mCartList) {
+            if (cartInfo.goodsId == info.goodsId) {
+                removed = cartInfo;
+                break;
+            }
+        }
+        mCartList.remove(removed);
+
+        // 显示最新商品数量
+        showCount();
+
+        // 删除mGoodsMap中的缓存数据
+        ToastUtil.show(this, "已从购物车中删除" + mGoodsMap.get(info.goodsId).name);
+        mGoodsMap.remove(info.goodsId);
+
+        // 刷新购物车中所有商品的总金额
+        refreshTotalPrice();
+    }
+
+    // 显示购物车图标中的商品数量
+    private void showCount() {
+        int goodsCount = IMyApplication.getInstance().goodsCount;
+        tv_count.setText(String.valueOf(goodsCount));
+        if (goodsCount == 0) {
+            ll_empty.setVisibility(View.VISIBLE);
+            ll_content.setVisibility(View.GONE);
+            ll_cart.removeAllViews();
+        } else {
+            ll_empty.setVisibility(View.GONE);
+            ll_content.setVisibility(View.VISIBLE);
+        }
     }
 
     // 重新计算购物车中的商品总金额
