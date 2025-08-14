@@ -1,6 +1,7 @@
 package com.hxl.dlocaldatalasting;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,6 +49,9 @@ public class JShoppingCartActivity extends AppCompatActivity implements View.OnC
         ll_content = findViewById(R.id.ll_content);
 
         findViewById(R.id.iv_back).setOnClickListener(this);
+        findViewById(R.id.btn_clear).setOnClickListener(this);
+        findViewById(R.id.btn_settle).setOnClickListener(this);
+        findViewById(R.id.btn_shopping_channel).setOnClickListener(this);
 
         mDBHelper = ShoppingDBHelper.getInstance(this);
     }
@@ -160,10 +164,40 @@ public class JShoppingCartActivity extends AppCompatActivity implements View.OnC
         tv_total_price.setText(String.valueOf(totalPrice));
     }
 
+    // 跳转到商品页
+    private void getShoppingChannel() {
+        Intent intent = new Intent(this, JShoppingChannelActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    // 清空购物车数据
+    private void clearCartInfo() {
+        mDBHelper.deleteAllCartInfo();
+        IMyApplication.getInstance().goodsCount = 0;
+        showCount();
+        ToastUtil.show(this, "购物车已清空 ");
+    }
+
+    // 结算
+    private void handelSettle() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("结算商品");
+        builder.setMessage("此功能尚未开通！");
+        builder.setPositiveButton("我知道了", null);
+        builder.create().show();
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.iv_back) {
             finish();
+        } else if (v.getId() == R.id.btn_shopping_channel) {
+            getShoppingChannel();
+        } else if (v.getId() == R.id.btn_clear) {
+            clearCartInfo();
+        } else if (v.getId() == R.id.btn_settle) {
+            handelSettle();
         }
     }
 }
