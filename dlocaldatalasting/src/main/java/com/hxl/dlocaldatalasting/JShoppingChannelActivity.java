@@ -94,6 +94,13 @@ public class JShoppingChannelActivity extends AppCompatActivity implements View.
                 addToCart(info.id, info.name);
             });
 
+            // 点击商品图片，跳转到商品详情页面
+            iv_thumb.setOnClickListener(v -> {
+                Intent intent = new Intent(JShoppingChannelActivity.this, JShoppingDetailActivity.class);
+                intent.putExtra("goods_id", info.id);
+                startActivity(intent);
+            });
+
             // 把商品视图添加到网络布局
             gl_channel.addView(view, params);
         }
