@@ -107,6 +107,12 @@ public class JShoppingCartActivity extends AppCompatActivity implements View.OnC
                 return true;
             });
 
+            view.setOnClickListener(v -> {
+                Intent intent = new Intent(JShoppingCartActivity.this, JShoppingDetailActivity.class);
+                intent.putExtra("goods_id", goods.id);
+                startActivity(intent);
+            });
+
             // 往购物车列表添加该商品行
             ll_cart.addView(view);
         }
